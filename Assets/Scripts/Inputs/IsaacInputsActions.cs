@@ -47,39 +47,39 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ShootRight"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""0fdc49af-21a1-4f79-b2be-517de2184b7f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ShootLeft"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""6c784344-44c2-474c-9764-5418af49887e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ShootUp"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""dd30eae2-7f3f-4438-a5fc-c8fcb8249432"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ShootDown"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""c5136241-cdad-4ce6-8e10-0b0d8e9cf8f0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -162,17 +162,6 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""69738462-7f4f-4491-a11f-749ab0c99bd3"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ShootLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""622c9bb2-61f0-4795-be6d-e8bfc4d0d1a8"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
@@ -190,6 +179,17 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ShootDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69738462-7f4f-4491-a11f-749ab0c99bd3"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

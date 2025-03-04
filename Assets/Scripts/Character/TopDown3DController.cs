@@ -1,9 +1,14 @@
+using Data;
 using Game;
 using UnityEngine;
 
 namespace Character
 {
-    [RequireComponent(typeof(Rigidbody))]
+    public class TopDownControllerGameplayData
+    {
+        public float MovementSpeedMultiplier { get; set; } = 1;
+    }
+    
     public class TopDown3DController : MonoBehaviour
     {
         [Header("Movement"), SerializeField, Range(0,100)] private float _baseSpeed = 10;
@@ -11,6 +16,7 @@ namespace Character
         [SerializeField, Range(0,200)] private float _deceleration = 100;
 
         [Header("Animation"), SerializeField, Range(0,1)] private float _facingDirectionSpeed = 0.1f;
+        [SerializeField] private Transform _mesh;
         [SerializeField] private Animator _animator;
 
         [Header("References")]
@@ -18,9 +24,10 @@ namespace Character
         [SerializeField] private CapsuleCollider _capsule;
         
         public float Height => _capsule.height;
-        
+        public Vector3 Velocity => _rigidbody.velocity;
+        public TopDownControllerGameplayData GameplayData { get; private set; }
+
         private MovementInputs _movementInputs;
-        
         private float _velocity;
         
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
@@ -31,11 +38,18 @@ namespace Character
             {
                 Debug.LogError("Missing Rigidbody or CapsuleCollider");
             }
+
+            GameplayData = new TopDownControllerGameplayData();
             
             GameManager.Instance.Inputs.OnHorizontalInput += x => _movementInputs.X = x;
             GameManager.Instance.Inputs.OnVerticalInput += y => _movementInputs.Y = y;
         }
 
+        public void Initialize(CharacterData data)
+        {
+            _baseSpeed = data.MoveSpeed;
+        }
+        
         private void FixedUpdate()
         {
             HandleMovement();
@@ -65,8 +79,7 @@ namespace Character
             Vector2 inputs = MovementInputs();
 
             //set target speed
-            float speedMultiplier = 1;
-            float targetSpeed = _baseSpeed * speedMultiplier;
+            float targetSpeed = _baseSpeed * GameplayData.MovementSpeedMultiplier;
 
             //set velocity variables
             Vector3 rigidbodyVelocity = _rigidbody.velocity;
@@ -137,7 +150,7 @@ namespace Character
         
             // rotate to face input direction
             float rotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
-            transform.rotation = QuaternionRotation(rotation);
+            transform.parent.rotation = QuaternionRotation(rotation);
         }
     
         private Quaternion QuaternionRotation(float targetRotation)

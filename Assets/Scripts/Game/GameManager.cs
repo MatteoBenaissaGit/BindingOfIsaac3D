@@ -5,19 +5,20 @@ using Dungeon;
 using Inputs;
 using MBLib.SingletonClassBase;
 using UnityEngine;
+using CharacterController = Character.CharacterController;
 
 namespace Game
 {
     public class GameManager : Singleton<GameManager>
     {
         [Header("Game")]
-        [SerializeField] private TopDown3DController _characterPrefab;
+        [SerializeField] private CharacterController _characterPrefab;
         [SerializeField] private DungeonData _dungeonData;
         [SerializeField] private RoomController _room;
         
         public InputsManager Inputs { get; private set; }
         public Dungeon.Dungeon Dungeon { get; private set; }
-        public TopDown3DController Character { get; private set; }
+        public CharacterController Character { get; private set; }
 
         private void Start()
         {
@@ -32,11 +33,16 @@ namespace Game
             InitializeCharacter();
         }
 
-        
+        private void Update()
+        {
+            Inputs.Update();
+        }
+
+
         private void InitializeCharacter()
         {
             Character = Instantiate(_characterPrefab);
-            Vector3 offset = new Vector3(0, Character.Height / 2, 0);
+            Vector3 offset = new Vector3(0, Character.TopDown.Height / 2, 0);
             Character.transform.SetPositionAndRotation(_room.DefaultSpawnPoint.position + offset, _room.DefaultSpawnPoint.rotation);
         }
     }

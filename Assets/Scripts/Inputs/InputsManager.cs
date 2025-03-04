@@ -11,10 +11,11 @@ namespace Inputs
         public Action<float> OnVerticalInput { get; set; }
         
         public Action<Vector2Int> OnShootInput { get; set; }
-        public static readonly Vector2Int Left = new Vector2Int(-1, 0);
-        public static readonly Vector2Int Right = new Vector2Int(1, 0);
-        public static readonly Vector2Int Up = new Vector2Int(0, 1);
-        public static readonly Vector2Int Down = new Vector2Int(0, -1);
+        private bool _shootLeft, _shootRight, _shootUp, _shootDown;
+        private static readonly Vector2Int Left = new Vector2Int(-1, 0);
+        private static readonly Vector2Int Right = new Vector2Int(1, 0);
+        private static readonly Vector2Int Up = new Vector2Int(0, 1);
+        private static readonly Vector2Int Down = new Vector2Int(0, -1);
 
         public void Initialize()
         {
@@ -26,12 +27,24 @@ namespace Inputs
             _isaacInputsActions.Character.MovementVertical.performed += ctx => OnVerticalInput?.Invoke(ctx.ReadValue<float>());
             _isaacInputsActions.Character.MovementVertical.canceled += ctx => OnVerticalInput?.Invoke(ctx.ReadValue<float>());
          
-            _isaacInputsActions.Character.ShootLeft.started += ctx => OnShootInput?.Invoke(Left);
-            _isaacInputsActions.Character.ShootRight.started += ctx => OnShootInput?.Invoke(Right);
-            _isaacInputsActions.Character.ShootUp.started += ctx => OnShootInput?.Invoke(Up);
-            _isaacInputsActions.Character.ShootDown.started += ctx => OnShootInput?.Invoke(Down);
+            _isaacInputsActions.Character.ShootLeft.performed += ctx => _shootLeft = true;
+            _isaacInputsActions.Character.ShootLeft.canceled += ctx => _shootLeft = false;
+            _isaacInputsActions.Character.ShootRight.performed += ctx => _shootRight = true;
+            _isaacInputsActions.Character.ShootRight.canceled += ctx => _shootRight = false;
+            _isaacInputsActions.Character.ShootUp.performed += ctx => _shootUp = true;
+            _isaacInputsActions.Character.ShootUp.canceled += ctx => _shootUp = false;
+            _isaacInputsActions.Character.ShootDown.performed += ctx => _shootDown = true;
+            _isaacInputsActions.Character.ShootDown.canceled += ctx => _shootDown = false;
         }
 
+        public void Update()
+        {
+            if (_shootLeft) OnShootInput?.Invoke(Left);
+            if (_shootRight) OnShootInput?.Invoke(Right);
+            if (_shootUp) OnShootInput?.Invoke(Up);
+            if (_shootDown) OnShootInput?.Invoke(Down);
+        }
+        
         public void Kill()
         {
             _isaacInputsActions.Disable();
