@@ -1,4 +1,5 @@
 ﻿using Data;
+using Projectiles;
 using UnityEngine;
 
 namespace Character
@@ -29,7 +30,7 @@ namespace Character
             TopDown.Initialize(Data);
         }
         
-        protected override void OnHitInternal(float damage)
+        protected override void OnHitInternal(float damage, IHittable.HitOrigin origin)
         {
             GameplayData.Life -= (int)damage;
         }

@@ -14,11 +14,11 @@ namespace Character
     {
         [field:SerializeField] public TeamType Team { get; private set; }
         
-        public void OnHit(float damage)
+        public void OnHit(float damage, IHittable.HitOrigin origin)
         {
-            OnHitInternal(damage);
+            OnHitInternal(damage, origin);
         }
 
-        protected abstract void OnHitInternal(float damage);
+        protected abstract void OnHitInternal(float damage, IHittable.HitOrigin origin);
     }
 }

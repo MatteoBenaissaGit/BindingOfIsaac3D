@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ProjectileData_Isaac
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 15
-  <Range>k__BackingField: 50
+  <Range>k__BackingField: 65
   <Damage>k__BackingField: 1

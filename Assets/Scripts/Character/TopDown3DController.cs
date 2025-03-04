@@ -131,7 +131,18 @@ namespace Character
         #endregion
 
         #region Animation
-    
+
+        private float _currentForceFacingTime;
+        private Vector2 _currentForceFacingDirection;
+        public void ForceFacingForSeconds(float duration, Vector2 facingDirection)
+        {
+            _currentForceFacingTime = duration;
+            _currentForceFacingDirection = facingDirection;
+            
+            float rotation = Mathf.Atan2(_currentForceFacingDirection.x, _currentForceFacingDirection.y) * Mathf.Rad2Deg;
+            transform.parent.rotation = Quaternion.Euler(0,rotation,0);
+        }
+        
         private void HandleAnimation()
         {
             FaceInputDirection();
@@ -142,11 +153,19 @@ namespace Character
 
         private void FaceInputDirection()
         {
-            if (MovementInputs() == Vector2.zero)
+            if (_currentForceFacingTime > 0)
+            {
+                Debug.Log("force facing");
+                _currentForceFacingTime -= Time.deltaTime;
+                return;
+            }
+
+            var movementInputs = MovementInputs();
+            if (movementInputs == Vector2.zero)
             {
                 return;
             }
-            Vector3 inputDirection = Vector3.Normalize(new Vector3(MovementInputs().x, 0.0f, MovementInputs().y));
+            Vector3 inputDirection = Vector3.Normalize(new Vector3(movementInputs.x, 0.0f, movementInputs.y));
         
             // rotate to face input direction
             float rotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;

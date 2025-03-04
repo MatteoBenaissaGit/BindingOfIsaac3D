@@ -49,6 +49,8 @@ namespace Character
 
             _mesh.DOComplete();
             _mesh.DOPunchScale(Vector3.one * 0.2f, 0.2f);
+            
+            GameManager.Instance.Character.TopDown.ForceFacingForSeconds(0.5f, direction);
         }
         
         private void ShootProjectileInDirection(Vector2 direction)

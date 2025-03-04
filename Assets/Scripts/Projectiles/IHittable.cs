@@ -2,6 +2,13 @@
 {
     public interface IHittable
     {
-        public void OnHit(float damage);
+        public enum HitOrigin
+        {
+            Contact = 0,
+            Projectile = 1,
+            Bomb = 2
+        }
+        
+        public void OnHit(float damage, HitOrigin origin);
     }
 }
