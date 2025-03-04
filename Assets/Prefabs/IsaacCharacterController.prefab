@@ -52,6 +52,8 @@ MonoBehaviour:
   _deceleration: 56
   _facingDirectionSpeed: 0.067
   _animator: {fileID: 5592748104793950039}
+  _rigidbody: {fileID: 2134355267957205034}
+  _capsule: {fileID: 5353901648544660200}
 --- !u!136 &5353901648544660200
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 
 namespace Character
@@ -5,29 +6,34 @@ namespace Character
     [RequireComponent(typeof(Rigidbody))]
     public class TopDown3DController : MonoBehaviour
     {
-        //movement
         [Header("Movement"), SerializeField, Range(0,100)] private float _baseSpeed = 10;
         [SerializeField, Range(0,200)] private float _acceleration = 100;
         [SerializeField, Range(0,200)] private float _deceleration = 100;
 
-        //animation
         [Header("Animation"), SerializeField, Range(0,1)] private float _facingDirectionSpeed = 0.1f;
         [SerializeField] private Animator _animator;
 
+        [Header("References")]
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private CapsuleCollider _capsule;
+        
+        public float Height => _capsule.height;
+        
         private MovementInputs _movementInputs;
-        private Rigidbody _rigidbody;
+        
         private float _velocity;
         
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
         public void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
-
-        private void Update()
-        {
-            GatherInputs();
+            if (_rigidbody == null || _capsule == null)
+            {
+                Debug.LogError("Missing Rigidbody or CapsuleCollider");
+            }
+            
+            GameManager.Instance.Inputs.OnHorizontalInput += x => _movementInputs.X = x;
+            GameManager.Instance.Inputs.OnVerticalInput += y => _movementInputs.Y = y;
         }
 
         private void FixedUpdate()
@@ -36,13 +42,7 @@ namespace Character
         }
 
         #region Inputs
-
-        private void GatherInputs()
-        {
-            _movementInputs.X = Input.GetAxisRaw("Horizontal");
-            _movementInputs.Y = Input.GetAxisRaw("Vertical");
-        }
-
+        
         private Vector2 MovementInputs()
         {
             return new Vector2(_movementInputs.X, _movementInputs.Y).normalized;
