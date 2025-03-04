@@ -25,6 +25,7 @@ namespace Character
         
         public ShootControllerGameplayData GameplayData { get; private set; }
 
+        private float ShootCooldown => GameplayData.ShootCooldown * GameplayData.ShootCooldownMultiplier;
         private float _currentShootCooldown;
         
         public void Initialize(CharacterData data)
@@ -43,14 +44,14 @@ namespace Character
         private void OnShoot(Vector2Int direction)
         {
             if (_currentShootCooldown > 0) return;
-            _currentShootCooldown = GameplayData.ShootCooldown * GameplayData.ShootCooldownMultiplier;
+            _currentShootCooldown = ShootCooldown;
             
             ShootProjectileInDirection(direction);
 
             _mesh.DOComplete();
             _mesh.DOPunchScale(Vector3.one * 0.2f, 0.2f);
             
-            GameManager.Instance.Character.TopDown.ForceFacingForSeconds(0.5f, direction);
+            GameManager.Instance.Character.TopDown.ForceFacingForSeconds(ShootCooldown, direction);
         }
         
         private void ShootProjectileInDirection(Vector2 direction)
