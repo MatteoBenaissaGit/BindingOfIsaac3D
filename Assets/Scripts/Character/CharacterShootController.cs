@@ -1,6 +1,7 @@
 ﻿using Data;
 using DG.Tweening;
 using Game;
+using Gameplay;
 using Projectiles;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Character
     public class ShootControllerGameplayData
     {
         public float ShootCooldown { get; set; } = 1.5f;
+        public float BombShootForce { get; set; } = 1f;
         public float ShootCooldownMultiplier { get; set; } = 1;
         
         public float ProjectileSpeedMultiplier { get; set; } = 1;
@@ -20,6 +22,7 @@ namespace Character
     public class CharacterShootController : MonoBehaviour
     {
         [SerializeField] private Projectile _projectilePrefab;
+        [SerializeField] private Bomb _bombPrefab;
         [SerializeField] private Transform _shootPosition;
         [SerializeField] private Transform _mesh;
         
@@ -32,8 +35,10 @@ namespace Character
         {
             GameplayData = new ShootControllerGameplayData();
             GameplayData.ShootCooldown = data.ShootCooldown;
+            GameplayData.BombShootForce = data.BombShootForce;
             
             GameManager.Instance.Inputs.OnShootInput += OnShoot;
+            GameManager.Instance.Inputs.OnBombShoot += DropBomb;
         }
 
         private void Update()
@@ -73,6 +78,16 @@ namespace Character
                 DamageMultiplier = GameplayData.ProjectileDamageMultiplier
             };
             projectile.Initialize(multipliers, projectileDirection, TeamType.Player);
+        }
+
+        private void DropBomb()
+        {
+            Vector3 direction = GameManager.Instance.Character.transform.forward;
+            Vector3 position = _shootPosition.position + _shootPosition.forward * 1.5f;
+            
+            Bomb bomb = Instantiate(_bombPrefab, position, Quaternion.identity);
+            bomb.Rigidbody.AddForce(new Vector3(direction.x, 0, direction.z) * GameplayData.BombShootForce, ForceMode.Impulse);
+            bomb.SpawnAnimation();
         }
     }
 }

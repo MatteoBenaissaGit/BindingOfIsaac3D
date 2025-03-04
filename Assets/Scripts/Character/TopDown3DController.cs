@@ -155,7 +155,6 @@ namespace Character
         {
             if (_currentForceFacingTime > 0)
             {
-                Debug.Log("force facing");
                 _currentForceFacingTime -= Time.deltaTime;
                 return;
             }

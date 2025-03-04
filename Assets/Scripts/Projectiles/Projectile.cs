@@ -29,8 +29,6 @@ namespace Projectiles
         
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private ParticleSystem _destroyParticles;
-        [SerializeField] private Transform _shadow;
-        [SerializeField] private LayerMask _shadowFloorLayer;
 
         private ProjectileInfo _infos;
         private Vector3 _startPosition;
@@ -49,14 +47,6 @@ namespace Projectiles
             
             _isInitialized = true;
             _startPosition = transform.position;
-        }
-
-        private void Update()
-        {
-            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100, _shadowFloorLayer))
-            {
-                _shadow.position = hit.point + Vector3.up * 0.1f;
-            }
         }
 
         private void FixedUpdate()

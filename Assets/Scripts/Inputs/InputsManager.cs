@@ -17,6 +17,8 @@ namespace Inputs
         private static readonly Vector2Int Up = new Vector2Int(0, 1);
         private static readonly Vector2Int Down = new Vector2Int(0, -1);
 
+        public Action OnBombShoot { get; set; }
+        
         public void Initialize()
         {
             _isaacInputsActions = new IsaacInputsActions();
@@ -35,6 +37,8 @@ namespace Inputs
             _isaacInputsActions.Character.ShootUp.canceled += ctx => _shootUp = false;
             _isaacInputsActions.Character.ShootDown.performed += ctx => _shootDown = true;
             _isaacInputsActions.Character.ShootDown.canceled += ctx => _shootDown = false;
+
+            _isaacInputsActions.Character.ShootBomb.started += ctx => OnBombShoot?.Invoke();
         }
 
         public void Update()

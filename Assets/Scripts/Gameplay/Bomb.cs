@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using DG.Tweening;
 using Projectiles;
 using UnityEngine;
 
@@ -10,6 +11,10 @@ namespace Gameplay
         [SerializeField] private float _explosionTime = 3;
         [SerializeField] private float _explosionRadius = 2;
         [SerializeField] private ParticleSystem _explosionParticle;
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Transform _mesh;
+        
+        public Rigidbody Rigidbody => _rigidbody;
         
         private float _timer;
 
@@ -43,6 +48,14 @@ namespace Gameplay
             _explosionParticle.transform.parent = null;
             
             Destroy(gameObject);
+        }
+        
+        public void SpawnAnimation()
+        {
+            Vector3 scale = _mesh.localScale;
+            _mesh.localScale /= 2;
+            _mesh.DOComplete();
+            _mesh.DOScale(scale, 0.35f).SetEase(Ease.OutBack);
         }
         
 #if UNITY_EDITOR

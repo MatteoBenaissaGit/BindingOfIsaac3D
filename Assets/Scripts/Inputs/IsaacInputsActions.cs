@@ -80,6 +80,15 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ShootBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""f798e7a0-1ea1-4036-a704-10ff6f0faa12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                     ""action"": ""ShootLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ead6fba6-8a26-4c97-a286-8773ef90a81d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         m_Character_ShootLeft = m_Character.FindAction("ShootLeft", throwIfNotFound: true);
         m_Character_ShootUp = m_Character.FindAction("ShootUp", throwIfNotFound: true);
         m_Character_ShootDown = m_Character.FindAction("ShootDown", throwIfNotFound: true);
+        m_Character_ShootBomb = m_Character.FindAction("ShootBomb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ShootLeft;
     private readonly InputAction m_Character_ShootUp;
     private readonly InputAction m_Character_ShootDown;
+    private readonly InputAction m_Character_ShootBomb;
     public struct CharacterActions
     {
         private @IsaacInputsActions m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         public InputAction @ShootLeft => m_Wrapper.m_Character_ShootLeft;
         public InputAction @ShootUp => m_Wrapper.m_Character_ShootUp;
         public InputAction @ShootDown => m_Wrapper.m_Character_ShootDown;
+        public InputAction @ShootBomb => m_Wrapper.m_Character_ShootBomb;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
             @ShootDown.started += instance.OnShootDown;
             @ShootDown.performed += instance.OnShootDown;
             @ShootDown.canceled += instance.OnShootDown;
+            @ShootBomb.started += instance.OnShootBomb;
+            @ShootBomb.performed += instance.OnShootBomb;
+            @ShootBomb.canceled += instance.OnShootBomb;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -332,6 +358,9 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
             @ShootDown.started -= instance.OnShootDown;
             @ShootDown.performed -= instance.OnShootDown;
             @ShootDown.canceled -= instance.OnShootDown;
+            @ShootBomb.started -= instance.OnShootBomb;
+            @ShootBomb.performed -= instance.OnShootBomb;
+            @ShootBomb.canceled -= instance.OnShootBomb;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -357,5 +386,6 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         void OnShootLeft(InputAction.CallbackContext context);
         void OnShootUp(InputAction.CallbackContext context);
         void OnShootDown(InputAction.CallbackContext context);
+        void OnShootBomb(InputAction.CallbackContext context);
     }
 }

@@ -7,5 +7,6 @@ namespace Data
     {
         [field: SerializeField] public float MoveSpeed { get; private set; } = 10;
         [field:SerializeField] public float ShootCooldown { get; private set; }
+        [field:SerializeField] public float BombShootForce { get; private set; }
     }
 }
