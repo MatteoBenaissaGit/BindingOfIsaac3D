@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using DG.Tweening;
+using Game;
 using Projectiles;
 using UnityEngine;
 
@@ -40,12 +41,14 @@ namespace Gameplay
             {
                 if (hits[i].collider.TryGetComponent(out GameEntity entity))
                 {
-                    entity.OnHit(10, IHittable.HitOrigin.Bomb);
+                    entity.OnHit(3, IHittable.HitOrigin.Bomb);
                 }
             }
             
             _explosionParticle.Play();
             _explosionParticle.transform.parent = null;
+            
+            GameManager.Instance.CameraController.Shake();
             
             Destroy(gameObject);
         }

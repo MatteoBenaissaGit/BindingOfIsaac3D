@@ -4,6 +4,7 @@ using Data;
 using Dungeon;
 using Inputs;
 using MBLib.SingletonClassBase;
+using UI;
 using UnityEngine;
 using CharacterController = Character.CharacterController;
 
@@ -11,6 +12,9 @@ namespace Game
 {
     public class GameManager : Singleton<GameManager>
     {
+        [field:SerializeField] public CameraController CameraController { get; private set; }
+        [field:SerializeField] public UIManager UI { get; private set; }
+        
         [Header("Game")]
         [SerializeField] private CharacterController _characterPrefab;
         [SerializeField] private DungeonData _dungeonData;

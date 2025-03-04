@@ -4887,9 +4887,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5158231080388840969}
+  - component: {fileID: 8724934673072524399}
   - component: {fileID: 5353901648544660200}
   - component: {fileID: 2134355267957205034}
-  - component: {fileID: 8724934673072524399}
   m_Layer: 0
   m_Name: IsaacCharacterController
   m_TagString: Untagged
@@ -4917,6 +4917,25 @@ Transform:
   - {fileID: 5741610368516503453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8724934673072524399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783261073969048816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee24e62417e4b738511a53b7c84eb4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Team>k__BackingField: 1
+  <TopDown>k__BackingField: {fileID: 1166610356281720837}
+  <Shoot>k__BackingField: {fileID: 3291275160239284875}
+  <Data>k__BackingField: {fileID: 11400000, guid: b4b5adf9ec426c04193d231703798f9c, type: 2}
+  <Animator>k__BackingField: {fileID: 5592748104793950039}
+  <SkinnedMesh>k__BackingField: {fileID: 6235805918032250161}
+  _shadow: {fileID: 5214945409408565818}
 --- !u!136 &5353901648544660200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4967,22 +4986,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8724934673072524399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2783261073969048816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee24e62417e4b738511a53b7c84eb4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Team>k__BackingField: 1
-  <TopDown>k__BackingField: {fileID: 1166610356281720837}
-  <Shoot>k__BackingField: {fileID: 3291275160239284875}
-  <Data>k__BackingField: {fileID: 11400000, guid: b4b5adf9ec426c04193d231703798f9c, type: 2}
 --- !u!1 &2967768526083638489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,8 +5034,6 @@ MonoBehaviour:
   _acceleration: 100
   _deceleration: 56
   _facingDirectionSpeed: 0.067
-  _mesh: {fileID: 8778605567863581608}
-  _animator: {fileID: 5592748104793950039}
   _rigidbody: {fileID: 2134355267957205034}
   _capsule: {fileID: 5353901648544660200}
 --- !u!1 &3493630513683604269
@@ -5255,6 +5256,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -6346362092993795648, guid: 87efab1e4dd19d84197042d43f68e64b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5818383593875947794, guid: 87efab1e4dd19d84197042d43f68e64b, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -5372,5 +5377,10 @@ Animator:
 --- !u!4 &4599929717388278721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87efab1e4dd19d84197042d43f68e64b, type: 3}
+  m_PrefabInstance: {fileID: 4061264766500183082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6235805918032250161 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1236648523804780261, guid: 87efab1e4dd19d84197042d43f68e64b, type: 3}
   m_PrefabInstance: {fileID: 4061264766500183082}
   m_PrefabAsset: {fileID: 0}

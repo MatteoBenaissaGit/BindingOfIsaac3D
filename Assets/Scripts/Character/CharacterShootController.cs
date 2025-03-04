@@ -30,9 +30,13 @@ namespace Character
 
         private float ShootCooldown => GameplayData.ShootCooldown * GameplayData.ShootCooldownMultiplier;
         private float _currentShootCooldown;
+        private CharacterController _characterController;
+        private bool _canShoot = true;
         
-        public void Initialize(CharacterData data)
+        public void Initialize(CharacterData data, CharacterController characterController)
         {
+            _characterController = characterController;
+            
             GameplayData = new ShootControllerGameplayData();
             GameplayData.ShootCooldown = data.ShootCooldown;
             GameplayData.BombShootForce = data.BombShootForce;
@@ -48,6 +52,8 @@ namespace Character
 
         private void OnShoot(Vector2Int direction)
         {
+            if (_canShoot == false) return;
+
             if (_currentShootCooldown > 0) return;
             _currentShootCooldown = ShootCooldown;
             
@@ -82,12 +88,19 @@ namespace Character
 
         private void DropBomb()
         {
-            Vector3 direction = GameManager.Instance.Character.transform.forward;
+            if (_canShoot == false) return;
+            
+            Vector3 direction = _characterController.transform.forward;
             Vector3 position = _shootPosition.position + _shootPosition.forward * 1.5f;
             
             Bomb bomb = Instantiate(_bombPrefab, position, Quaternion.identity);
             bomb.Rigidbody.AddForce(new Vector3(direction.x, 0, direction.z) * GameplayData.BombShootForce, ForceMode.Impulse);
             bomb.SpawnAnimation();
+        }
+
+        public void Disable()
+        {
+            _canShoot = false;
         }
     }
 }

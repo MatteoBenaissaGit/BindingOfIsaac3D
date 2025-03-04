@@ -16,8 +16,6 @@ namespace Character
         [SerializeField, Range(0,200)] private float _deceleration = 100;
 
         [Header("Animation"), SerializeField, Range(0,1)] private float _facingDirectionSpeed = 0.1f;
-        [SerializeField] private Transform _mesh;
-        [SerializeField] private Animator _animator;
 
         [Header("References")]
         [SerializeField] private Rigidbody _rigidbody;
@@ -27,8 +25,10 @@ namespace Character
         public Vector3 Velocity => _rigidbody.velocity;
         public TopDownControllerGameplayData GameplayData { get; private set; }
 
+        private CharacterController _characterController;
         private MovementInputs _movementInputs;
         private float _velocity;
+        private bool _canMove = true;
         
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
@@ -45,8 +45,10 @@ namespace Character
             GameManager.Instance.Inputs.OnVerticalInput += y => _movementInputs.Y = y;
         }
 
-        public void Initialize(CharacterData data)
+        public void Initialize(CharacterData data, CharacterController characterController)
         {
+            _characterController = characterController;
+            
             _baseSpeed = data.MoveSpeed;
         }
         
@@ -68,10 +70,9 @@ namespace Character
 
         private void HandleMovement()
         {
-            if (CanMove() == false)
+            if (_canMove == false)
             {
                 BlockCharacterMovement();
-                print("Can't move");
                 return;
             }
 
@@ -118,16 +119,17 @@ namespace Character
             HandleAnimation();
         }
 
-        private bool CanMove()
-        {
-            return true;
-        }
-    
         private void BlockCharacterMovement()
         {
             _rigidbody.velocity = Vector3.zero;
         }
 
+        public void Disable()
+        {
+            _canMove = false;
+            BlockCharacterMovement();
+        }
+        
         #endregion
 
         #region Animation
@@ -146,9 +148,11 @@ namespace Character
         private void HandleAnimation()
         {
             FaceInputDirection();
+
+            if (_characterController == null) return;
             
             bool isWalking = _movementInputs.X != 0 || _movementInputs.Y != 0;
-            _animator.SetBool(IsWalking, isWalking);
+            _characterController.Animator.SetBool(IsWalking, isWalking);
         }
 
         private void FaceInputDirection()
