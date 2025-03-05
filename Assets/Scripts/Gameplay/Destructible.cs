@@ -29,6 +29,8 @@ namespace DefaultNamespace
 
         protected override void OnHitInternal(float damage, IHittable.HitOrigin origin)
         {
+            if (origin == IHittable.HitOrigin.Contact) return;
+            
             if (origin == IHittable.HitOrigin.Projectile)
             {
                 if (_affectedByProjectiles == false)

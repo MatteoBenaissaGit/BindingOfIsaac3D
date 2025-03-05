@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using Data;
 using DG.Tweening;
 using MBLib.GameEventManager;
 using Projectiles;
@@ -19,6 +20,7 @@ namespace Enemy
     
     public class EnemyController : GameEntity, IAi
     {
+        [SerializeField] private EnemyData _data;
         [SerializeField] private GameEvent _behavior;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private int _life = 3;
@@ -35,6 +37,16 @@ namespace Enemy
             GameplayData = new(_life);
             
             _behaviorGuid = GameEventsManager.PlayEvent(_behavior, (OWNER, this));
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (_data.DamagePlayerOnContact == false) return;
+            
+            if (collision.gameObject.TryGetComponent(out GameEntity entity) && entity.Team != Team)
+            {
+                entity.OnHit(_data.ContactDamage, IHittable.HitOrigin.Contact);
+            }
         }
 
         protected override void OnHitInternal(float damage, IHittable.HitOrigin origin)

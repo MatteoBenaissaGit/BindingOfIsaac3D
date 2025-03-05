@@ -17,6 +17,8 @@ MonoBehaviour:
   - rid: 3457532089511968769
   - rid: 3457532089511968770
   - rid: 3457532089511968772
+  - rid: 3457532089511968778
+  - rid: 3457532089511968779
   - rid: 3457532089511968777
   - rid: 3457532089511968776
   references:
@@ -56,3 +58,15 @@ MonoBehaviour:
         Enabled: 1
         Direction: Direction
         Force: 10
+    - rid: 3457532089511968778
+      type: {class: SetVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Vector: {x: 0, y: 1, z: 0}
+        SaveKey: UpVector
+    - rid: 3457532089511968779
+      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction: UpVector
+        Force: 5
