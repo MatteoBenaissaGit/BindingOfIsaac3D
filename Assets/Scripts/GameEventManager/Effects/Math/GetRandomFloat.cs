@@ -18,7 +18,6 @@ namespace MBLib.GameEventManager.Effects
         public override bool Execute(GameEventInstance gameEvent)
         {
             float random = UnityEngine.Random.Range(Range.x, Range.y);
-            
             gameEvent.SetParameters((SaveKey, random));
             return true;
         }

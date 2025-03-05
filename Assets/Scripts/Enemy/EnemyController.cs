@@ -24,6 +24,8 @@ namespace Enemy
         [SerializeField] private GameEvent _behavior;
         [SerializeField] private Rigidbody _rigidbody;
         [Space, SerializeField] private SkinnedMeshRenderer _skinnedMesh;
+        [SerializeField] private MeshRenderer _mesh;
+        [SerializeField] private ParticleSystem _deathParticle;
 
         public EnemyGameplayData GameplayData { get; private set; }
         
@@ -55,9 +57,10 @@ namespace Enemy
 
         public void HitDamage(int damage)
         {
-            if (_skinnedMesh != null)
+            Material[] materials = _mesh == null ? _skinnedMesh == null ? null : _skinnedMesh.materials : _mesh.materials;
+            if (materials != null)
             {
-                foreach (Material material in _skinnedMesh.materials)
+                foreach (Material material in materials)
                 {
                     material.DOComplete();
                     material.DOColor(Color.red, 0.1f).OnComplete(() =>
@@ -77,6 +80,9 @@ namespace Enemy
 
         public void Die()
         {
+            _deathParticle.Play();
+            _deathParticle.transform.parent = null;
+            
             GameEventsManager.KillEvent(_behaviorGuid);
             
             Destroy(gameObject);

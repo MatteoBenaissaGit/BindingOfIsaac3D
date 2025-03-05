@@ -96,7 +96,7 @@ MonoBehaviour:
       type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        Range: {x: 0.7, y: 1}
+        Range: {x: 1, y: 1.5}
         SaveKey: WaitTime
     - rid: 3457532089511968783
       type: {class: GetPlayerEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
@@ -107,7 +107,7 @@ MonoBehaviour:
       type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        Range: {x: 0.7, y: 1}
+        Range: {x: 1, y: 1.5}
         SaveKey: SecondWaitTimer
     - rid: 3457532089511968785
       type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}

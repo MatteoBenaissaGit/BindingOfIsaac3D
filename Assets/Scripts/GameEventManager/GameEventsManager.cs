@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using MBLib.GameEventManager.Effects;
-using MBLib.SingletonClassBase;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace MBLib.GameEventManager
 {
-    public class GameEventsManager : Singleton<GameEventsManager>
+    public class GameEventsManager : SingletonClassBase.Singleton<GameEventsManager>
     {
         public List<GameEventInstance> Events = new();
 
@@ -26,9 +27,15 @@ namespace MBLib.GameEventManager
 
         public static Guid PlayEvent(GameEvent @event, params (string name, object value)[] parameters)
         {
+            var copiedEffects = new List<GameEffect>();
+            foreach (GameEffect gameEffect in @event.GameEffects)
+            {
+                copiedEffects.Add(gameEffect.Clone(new FieldsCloner(), true));
+            }
+            
             GameEventInstance eventInstance = new GameEventInstance
             {
-                GameEffects = new List<GameEffect>(@event.GameEffects)
+                GameEffects = copiedEffects
             };
 
             eventInstance.SetBaseParameters(parameters);
