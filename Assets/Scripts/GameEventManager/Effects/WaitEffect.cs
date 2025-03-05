@@ -7,13 +7,14 @@ namespace MBLib.GameEventManager.Effects
     [Serializable, GameEffectName("Common/Wait"), GameEffectColor(255, 255, 0)]
     public class WaitEffect : GameEffect
     {
-        public float Timer;
+        public Getter<float> Timer;
 
         private float _timer;
+        private bool _isInitialized;
 
-        public override void Initialize()
+        public override void Initialize(GameEventInstance gameEvent)
         {
-            _timer = Timer;
+            _isInitialized = false;
         }
 
         public override string ToString()
@@ -23,6 +24,12 @@ namespace MBLib.GameEventManager.Effects
 
         public override bool Execute(GameEventInstance gameEvent)
         {
+            if (_isInitialized == false)
+            {
+                _timer = Timer.Value(gameEvent);
+                _isInitialized = true;
+            }
+            
             _timer -= Time.deltaTime;
             if (_timer > 0) return false;
             return true;

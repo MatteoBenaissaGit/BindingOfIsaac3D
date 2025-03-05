@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: Behavior_SmallPoop
   m_EditorClassIdentifier: 
   GameEffects:
+  - rid: 3457532089511968782
   - rid: 3457532089511968771
   - rid: 3457532089511968769
   - rid: 3457532089511968770
   - rid: 3457532089511968772
   - rid: 3457532089511968778
+  - rid: 3457532089511968780
+  - rid: 3457532089511968781
   - rid: 3457532089511968779
-  - rid: 3457532089511968777
   - rid: 3457532089511968776
   references:
     version: 2
@@ -40,7 +42,9 @@ MonoBehaviour:
       type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        Timer: 1
+        Timer:
+          TypeValue: 0
+          Key: WaitTime
     - rid: 3457532089511968772
       type: {class: MultiplyVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
@@ -52,12 +56,6 @@ MonoBehaviour:
       type: {class: RestartEvent, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-    - rid: 3457532089511968777
-      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
-      data:
-        Enabled: 1
-        Direction: Direction
-        Force: 10
     - rid: 3457532089511968778
       type: {class: SetVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
@@ -68,5 +66,26 @@ MonoBehaviour:
       type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        Direction: UpVector
-        Force: 5
+        Direction: ForceVector
+        Force:
+          TypeValue: 1
+          Key: Force
+    - rid: 3457532089511968780
+      type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        VectorA: UpVector
+        VectorB: DirectionMultiplied
+        SaveKey: ForceVector
+    - rid: 3457532089511968781
+      type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Range: {x: 5, y: 10}
+        SaveKey: Force
+    - rid: 3457532089511968782
+      type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Range: {x: 0.7, y: 1}
+        SaveKey: WaitTime

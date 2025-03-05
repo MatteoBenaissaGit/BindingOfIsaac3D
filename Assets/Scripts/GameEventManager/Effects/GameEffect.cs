@@ -8,7 +8,7 @@ namespace MBLib.GameEventManager.Effects
     {
         public bool Enabled = true;
 
-        public virtual void Initialize()
+        public virtual void Initialize(GameEventInstance gameEvent)
         {
             
         }

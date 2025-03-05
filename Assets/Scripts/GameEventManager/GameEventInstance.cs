@@ -50,7 +50,7 @@ namespace MBLib.GameEventManager
             _parameters.Clear();
             foreach (GameEffect gameEffect in GameEffects)
             {
-                gameEffect.Initialize();
+                gameEffect.Initialize(this);
             }
         }
         

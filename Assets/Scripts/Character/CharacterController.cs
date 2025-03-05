@@ -50,6 +50,8 @@ namespace Character
         
         protected override void OnHitInternal(float damage, IHittable.HitOrigin origin)
         {
+            if (GameplayData.Life <= 0) return;
+            
             GameplayData.Life -= (int)damage;
             
             GameManager.Instance.UI.Life.UpdateLife(GameplayData.Life);
@@ -71,6 +73,12 @@ namespace Character
 
         private void Die()
         {
+            foreach (Material material in SkinnedMesh.materials)
+            {
+                material.DOComplete();
+                material.DOColor(new Color(0.29f, 0.29f, 0.29f), 1f);
+            }
+            
             Animator.SetTrigger(DeathTriggerAnimator);
             
             TopDown.Disable();

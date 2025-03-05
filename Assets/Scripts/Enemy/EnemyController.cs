@@ -23,7 +23,6 @@ namespace Enemy
         [SerializeField] private EnemyData _data;
         [SerializeField] private GameEvent _behavior;
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private int _life = 3;
         [Space, SerializeField] private SkinnedMeshRenderer _skinnedMesh;
 
         public EnemyGameplayData GameplayData { get; private set; }
@@ -34,7 +33,7 @@ namespace Enemy
         
         private void Start()
         {
-            GameplayData = new(_life);
+            GameplayData = new(_data.Life);
             
             _behaviorGuid = GameEventsManager.PlayEvent(_behavior, (OWNER, this));
         }

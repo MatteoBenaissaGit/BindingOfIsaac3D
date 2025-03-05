@@ -9,11 +9,11 @@ namespace MBLib.GameEventManager.Effects
     public class AddForceToDirection : GameEffect
     {
         public string Direction;
-        public float Force;
+        public Getter<float> Force;
 
         public override string ToString()
         {
-            return $"{"[AI]".Bold()} Add force toward {Direction.Getter()} with {(Force + " force").Bold()}";
+            return $"{"[AI]".Bold()} Add force toward {Direction.Getter()} with {Force}";
         }
 
         public override bool Execute(GameEventInstance gameEvent)
@@ -27,7 +27,7 @@ namespace MBLib.GameEventManager.Effects
                 return true;
             }
             
-            enemy.AddForceInDirection(direction, Force);
+            enemy.AddForceInDirection(direction, Force.Value(gameEvent));
             
             return true;
         }
