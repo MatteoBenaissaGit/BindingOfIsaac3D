@@ -3,6 +3,7 @@ using DG.Tweening;
 using Game;
 using Gameplay;
 using Projectiles;
+using UI;
 using UnityEngine;
 
 namespace Character
@@ -89,6 +90,7 @@ namespace Character
         private void DropBomb()
         {
             if (_canShoot == false) return;
+            if (_characterController.GameplayData.Bomb <= 0) return;
             
             Vector3 direction = _characterController.transform.forward;
             Vector3 position = _shootPosition.position + _shootPosition.forward * 1.5f;
@@ -96,6 +98,9 @@ namespace Character
             Bomb bomb = Instantiate(_bombPrefab, position, Quaternion.identity);
             bomb.Rigidbody.AddForce(new Vector3(direction.x, 0, direction.z) * GameplayData.BombShootForce, ForceMode.Impulse);
             bomb.SpawnAnimation();
+
+            _characterController.GameplayData.Bomb--;
+            GameManager.Instance.UI.Stats.Set(UIStats.StatType.Bomb, _characterController.GameplayData.Bomb);
         }
 
         public void Disable()

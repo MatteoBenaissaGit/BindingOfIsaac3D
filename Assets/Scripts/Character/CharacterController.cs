@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Game;
 using Projectiles;
+using UI;
 using UnityEngine;
 
 namespace Character
@@ -12,10 +13,14 @@ namespace Character
         {
             Life = 6;
             MaxLife = 6;
+            Bomb = 3;
+            Money = 0;
         }
         
         public int Life { get; set; }
         public int MaxLife { get; set; }
+        public int Bomb { get; set; }
+        public int Money { get; set; }
     }
     
     public class CharacterController : GameEntity
@@ -37,7 +42,10 @@ namespace Character
             Shoot.Initialize(Data, this);
             TopDown.Initialize(Data, this);
             
-            GameManager.Instance.UI.Life.Initialize(GameplayData.Life, GameplayData.MaxLife);
+            UIManager ui = GameManager.Instance.UI;
+            ui.Life.Initialize(GameplayData.Life, GameplayData.MaxLife);
+            ui.Stats.Set(UIStats.StatType.Bomb, GameplayData.Bomb);
+            ui.Stats.Set(UIStats.StatType.Money, GameplayData.Money);
         }
         
         protected override void OnHitInternal(float damage, IHittable.HitOrigin origin)
