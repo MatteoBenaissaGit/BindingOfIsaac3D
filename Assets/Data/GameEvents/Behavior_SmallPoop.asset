@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a042001cbb4be114c91a78778d48fe1e, type: 3}
+  m_Name: Behavior_SmallPoop
+  m_EditorClassIdentifier: 
+  GameEffects:
+  - rid: 3457532089511968771
+  - rid: 3457532089511968769
+  - rid: 3457532089511968770
+  - rid: 3457532089511968772
+  - rid: 3457532089511968777
+  - rid: 3457532089511968776
+  references:
+    version: 2
+    RefIds:
+    - rid: 3457532089511968769
+      type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Range: {x: 0, y: 360}
+        SaveKey: DirectionAngle
+    - rid: 3457532089511968770
+      type: {class: GetDirectionFromAngle, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Angle: DirectionAngle
+        DirectionSaveKey: Direction
+    - rid: 3457532089511968771
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer: 1
+    - rid: 3457532089511968772
+      type: {class: MultiplyVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Vector: Direction
+        MultiplyAmount: 1
+        SaveKey: DirectionMultiplied
+    - rid: 3457532089511968776
+      type: {class: RestartEvent, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 3457532089511968777
+      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction: Direction
+        Force: 10
