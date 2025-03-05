@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Common/Wait"), GameEffectColor(255, 255, 0)]
+    [Serializable, GameEffectName("Common/Wait"), GameEffectColor(EffectColors.COMMON)]
     public class WaitEffect : GameEffect
     {
         public Getter<float> Timer;

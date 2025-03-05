@@ -3,7 +3,7 @@ using MBLib.GameEventManager.Attribute;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Common/Restart Event"), GameEffectColor(255, 255, 0)]
+    [Serializable, GameEffectName("Common/Restart Event"), GameEffectColor(EffectColors.COMMON)]
     public class RestartEvent : GameEffect
     {
         

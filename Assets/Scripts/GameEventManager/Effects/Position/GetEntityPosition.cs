@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Position/Get EntityPosition"), GameEffectColor(255, 128, 0)]
+    [Serializable, GameEffectName("Position/Get Entity Position"), GameEffectColor(EffectColors.GAMEPLAY)]
     public class GetEntityPosition : GameEffect
     {
         public string EntityKey;

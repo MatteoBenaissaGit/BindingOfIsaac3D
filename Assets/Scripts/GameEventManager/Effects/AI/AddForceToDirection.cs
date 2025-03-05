@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("AI/Add force to direction"), GameEffectColor(0, 255, 255)]
+    [Serializable, GameEffectName("AI/Add force to direction"), GameEffectColor(EffectColors.AI)]
     public class AddForceToDirection : GameEffect
     {
         public string Direction;

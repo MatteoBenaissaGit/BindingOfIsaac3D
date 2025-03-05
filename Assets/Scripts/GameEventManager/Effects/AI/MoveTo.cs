@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("AI/Move to"), GameEffectColor(0, 255, 255)]
+    [Serializable, GameEffectName("AI/Move to"), GameEffectColor(EffectColors.AI)]
     public class MoveTo : GameEffect
     {
         public string Position;

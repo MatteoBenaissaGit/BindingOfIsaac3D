@@ -22,6 +22,15 @@ MonoBehaviour:
   - rid: 3457532089511968780
   - rid: 3457532089511968781
   - rid: 3457532089511968779
+  - rid: 3457532089511968784
+  - rid: 3457532089511968785
+  - rid: 3457532089511968783
+  - rid: 3457532089511968793
+  - rid: 3457532089511968786
+  - rid: 3457532089511968792
+  - rid: 3457532089511968789
+  - rid: 3457532089511968791
+  - rid: 3457532089511968790
   - rid: 3457532089511968776
   references:
     version: 2
@@ -81,7 +90,7 @@ MonoBehaviour:
       type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        Range: {x: 5, y: 10}
+        Range: {x: 5, y: 8}
         SaveKey: Force
     - rid: 3457532089511968782
       type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
@@ -89,3 +98,61 @@ MonoBehaviour:
         Enabled: 1
         Range: {x: 0.7, y: 1}
         SaveKey: WaitTime
+    - rid: 3457532089511968783
+      type: {class: GetPlayerEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        SaveKey: PlayerEntity
+    - rid: 3457532089511968784
+      type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Range: {x: 0.7, y: 1}
+        SaveKey: SecondWaitTimer
+    - rid: 3457532089511968785
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 0
+          Key: SecondWaitTimer
+    - rid: 3457532089511968786
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: NewPosition
+    - rid: 3457532089511968789
+      type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        VectorA: NewDirection
+        VectorB: UpVector
+        SaveKey: NewForce
+    - rid: 3457532089511968790
+      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction: NewForce
+        Force:
+          TypeValue: 1
+          Key: JumpToPlayerForce
+    - rid: 3457532089511968791
+      type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Range: {x: 5, y: 8}
+        SaveKey: JumpToPlayerForce
+    - rid: 3457532089511968792
+      type: {class: GetDirectionToEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: NewPosition
+        Destination: PlayerPosition
+        SaveKey: NewDirection
+    - rid: 3457532089511968793
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: PlayerEntity
+        SaveKey: PlayerPosition

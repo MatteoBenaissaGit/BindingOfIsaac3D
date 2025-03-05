@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Math/Get Random Float"), GameEffectColor(255, 0, 127)]
+    [Serializable, GameEffectName("Math/Get Random Float"), GameEffectColor(EffectColors.FLOAT)]
     public class GetRandomFloat : GameEffect
     {
         public Vector2 Range;

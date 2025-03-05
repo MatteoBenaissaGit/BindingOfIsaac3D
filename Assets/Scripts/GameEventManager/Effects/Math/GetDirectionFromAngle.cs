@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Math/Get Vector3 Direction From Angle"), GameEffectColor(255, 0, 127)]
+    [Serializable, GameEffectName("Math/Get Vector3 Direction From Angle"), GameEffectColor(EffectColors.VECTOR3)]
     public class GetDirectionFromAngle : GameEffect
     {
         public string Angle;

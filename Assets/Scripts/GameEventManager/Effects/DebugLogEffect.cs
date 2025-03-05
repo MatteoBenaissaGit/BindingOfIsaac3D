@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Common/Debug Log"), GameEffectColor(255, 255, 255)]
+    [Serializable, GameEffectName("Common/Debug Log"), GameEffectColor(EffectColors.COMMON)]
     public class DebugLogEffect : GameEffect
     {
         public string Text;

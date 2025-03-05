@@ -1,23 +1,22 @@
 ﻿using System;
+using Game;
 using MBLib.GameEventManager.Attribute;
-using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Math/Set Vector3"), GameEffectColor(EffectColors.VECTOR3)]
-    public class SetVector3 : GameEffect
+    [Serializable, GameEffectName("Gameplay/Get Player Entity"), GameEffectColor(EffectColors.GAMEPLAY)]
+    public class GetPlayerEntity : GameEffect
     {
-        public Vector3 Vector;
         public string SaveKey;
 
         public override string ToString()
         {
-            return $"Save {Vector.ToString().Bold()} as {SaveKey.Setter()}";
+            return $"Save {("Player").Bold()} as {SaveKey.Setter()}";
         }
 
         public override bool Execute(GameEventInstance gameEvent)
         {
-            gameEvent.SetParameters((SaveKey, Vector));
+            gameEvent.SetParameters((SaveKey, GameManager.Instance.Character));
             return true;
         }
     }

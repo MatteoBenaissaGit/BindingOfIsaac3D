@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Audio/Play Audio"), GameEffectColor(255, 0, 255)]
+    [Serializable, GameEffectName("Audio/Play Audio"), GameEffectColor(EffectColors.AUDIO)]
     public class PlayAudioEffect : GameEffect
     {
         public AudioClip Clip;

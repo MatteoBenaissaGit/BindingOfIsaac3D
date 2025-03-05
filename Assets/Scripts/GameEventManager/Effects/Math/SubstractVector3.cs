@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Math/Add Vector3"), GameEffectColor(EffectColors.VECTOR3)]
-    public class AddVector3 : GameEffect
+    [Serializable, GameEffectName("Math/Substract Vector3"), GameEffectColor(EffectColors.VECTOR3)]
+    public class SubstractVector3 : GameEffect
     {
         public string VectorA;
         public string VectorB;
@@ -13,7 +13,7 @@ namespace MBLib.GameEventManager.Effects
 
         public override string ToString()
         {
-            return $"Add {VectorA.Getter()} and {VectorB.Getter()} and save it as {SaveKey.Setter()}";
+            return $"Substract {VectorA.Getter()} by {VectorB.Getter()} and save it as {SaveKey.Setter()}";
         }
 
         public override bool Execute(GameEventInstance gameEvent)
@@ -26,7 +26,7 @@ namespace MBLib.GameEventManager.Effects
             {
                 return true;
             }
-            Vector3 addVector = vectorA + vectorB;
+            Vector3 addVector = vectorA - vectorB;
             
             gameEvent.SetParameters((SaveKey, addVector));
             return true;

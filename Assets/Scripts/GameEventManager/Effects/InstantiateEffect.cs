@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Gameplay/Instantiate"), GameEffectColor(0, 255, 0)]
+    [Serializable, GameEffectName("Gameplay/Instantiate"), GameEffectColor(EffectColors.GAMEPLAY)]
     public class InstantiateEffect : GameEffect
     {
         public GameObject Prefab;

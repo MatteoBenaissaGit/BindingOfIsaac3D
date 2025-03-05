@@ -4,16 +4,15 @@ using UnityEngine;
 
 namespace MBLib.GameEventManager.Effects
 {
-    [Serializable, GameEffectName("Math/Multiply Vector3"), GameEffectColor(EffectColors.VECTOR3)]
-    public class MultiplyVector3 : GameEffect
+    [Serializable, GameEffectName("Math/Flat Vector3"), GameEffectColor(EffectColors.VECTOR3)]
+    public class FlatVector3 : GameEffect
     {
         public string Vector;
-        public float MultiplyAmount;
         public string SaveKey;
 
         public override string ToString()
         {
-            return $"Multiply {Vector.Getter()} by {MultiplyAmount.ToString().Bold()} and save it as {SaveKey.Setter()}";
+            return $"Flat (remove y) {Vector.Getter()} and save it as {SaveKey.Setter()}";
         }
 
         public override bool Execute(GameEventInstance gameEvent)
@@ -22,9 +21,9 @@ namespace MBLib.GameEventManager.Effects
             {
                 return true;
             }
-            Vector3 multipliedVector = vector * MultiplyAmount;
+            Vector3 flatVector = new Vector3(vector.x,0,vector.z);
             
-            gameEvent.SetParameters((SaveKey, multipliedVector));
+            gameEvent.SetParameters((SaveKey, flatVector));
             return true;
         }
     }

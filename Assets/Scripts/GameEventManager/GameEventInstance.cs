@@ -30,7 +30,7 @@ namespace MBLib.GameEventManager
 
         public bool GetParameter<T>(string parameterName, out T @object) where T : new()
         {
-            @object = new T();
+            @object = default(T);
             if (_parameters.TryGetValue(parameterName, out object value) || _baseParameters.TryGetValue(parameterName, out value))
             {
                 if (value is not T t)

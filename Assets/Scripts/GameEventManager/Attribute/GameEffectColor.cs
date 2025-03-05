@@ -1,7 +1,20 @@
 ﻿using System;
+using System.Drawing;
+using UnityEngine;
+using Color = UnityEngine.Color;
 
 namespace MBLib.GameEventManager.Attribute
 {
+    public static class EffectColors
+    {
+        public const KnownColor VECTOR3 = KnownColor.Crimson; 
+        public const KnownColor FLOAT = KnownColor.Olive;
+        public const KnownColor GAMEPLAY = KnownColor.Orange;
+        public const KnownColor AI = KnownColor.DodgerBlue;
+        public const KnownColor COMMON = KnownColor.Gold;
+        public const KnownColor AUDIO = KnownColor.Bisque;
+    }
+    
     [AttributeUsage(AttributeTargets.Class)]
     public class GameEffectColor : System.Attribute
     {
@@ -14,6 +27,14 @@ namespace MBLib.GameEventManager.Attribute
             Red = red;
             Green = green;
             Blue = blue;
+        }
+        
+        public GameEffectColor(KnownColor color)
+        {
+            System.Drawing.Color drawingColor = System.Drawing.Color.FromKnownColor(color);
+            Red = drawingColor.R;
+            Green = drawingColor.G;
+            Blue = drawingColor.B;
         }
 
         public override string ToString()
