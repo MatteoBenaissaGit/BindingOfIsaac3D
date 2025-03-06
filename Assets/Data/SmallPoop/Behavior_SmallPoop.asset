@@ -83,8 +83,12 @@ MonoBehaviour:
       type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        VectorA: UpVector
-        VectorB: DirectionMultiplied
+        VectorA:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: DirectionMultiplied
+        VectorB:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: UpVector
         SaveKey: ForceVector
     - rid: 3457532089511968781
       type: {class: GetRandomFloat, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
@@ -126,8 +130,12 @@ MonoBehaviour:
       type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:
         Enabled: 1
-        VectorA: NewDirection
-        VectorB: UpVector
+        VectorA:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: NewDirection
+        VectorB:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: UpVector
         SaveKey: NewForce
     - rid: 3457532089511968790
       type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}

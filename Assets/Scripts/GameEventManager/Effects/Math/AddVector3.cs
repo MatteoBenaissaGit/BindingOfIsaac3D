@@ -7,26 +7,18 @@ namespace MBLib.GameEventManager.Effects
     [Serializable, GameEffectName("Math/Add Vector3"), GameEffectColor(EffectColors.VECTOR3)]
     public class AddVector3 : GameEffect
     {
-        public string VectorA;
-        public string VectorB;
+        public Getter<Vector3> VectorA;
+        public Getter<Vector3> VectorB;
         public string SaveKey;
 
         public override string ToString()
         {
-            return $"Add {VectorA.Getter()} and {VectorB.Getter()} and save it as {SaveKey.Setter()}";
+            return $"Add {VectorA} and {VectorB} and save it as {SaveKey.Setter()}";
         }
 
         public override bool Execute(GameEventInstance gameEvent)
         {
-            if (gameEvent.GetParameter(VectorA, out Vector3 vectorA) == false)
-            {
-                return true;
-            }
-            if (gameEvent.GetParameter(VectorB, out Vector3 vectorB) == false)
-            {
-                return true;
-            }
-            Vector3 addVector = vectorA + vectorB;
+            Vector3 addVector = VectorA.Value(gameEvent) + VectorB.Value(gameEvent);
             
             gameEvent.SetParameters((SaveKey, addVector));
             return true;

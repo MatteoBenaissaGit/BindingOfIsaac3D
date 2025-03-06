@@ -23,6 +23,8 @@ MonoBehaviour:
   - rid: 6629780386387591177
   - rid: 6629780386387591176
   - rid: 6629780386387591178
+  - rid: 6629780386387591179
+  - rid: 6629780386387591180
   - rid: 6629780386387591175
   references:
     version: 2
@@ -103,3 +105,17 @@ MonoBehaviour:
         Duration:
           TypeValue: 0.3
           Key: 
+    - rid: 6629780386387591179
+      type: {class: InstantiateEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Prefab: {fileID: 2247734346002199631, guid: c7d523d4132d2044797011c742356c11, type: 3}
+        PositionKey: OwnerNewPosition
+        Offset: {x: 1, y: 0, z: 0}
+    - rid: 6629780386387591180
+      type: {class: InstantiateEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Prefab: {fileID: 2247734346002199631, guid: c7d523d4132d2044797011c742356c11, type: 3}
+        PositionKey: OwnerNewPosition
+        Offset: {x: -1, y: 0, z: 0}
