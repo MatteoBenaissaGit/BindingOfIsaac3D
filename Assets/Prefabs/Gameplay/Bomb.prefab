@@ -4964,6 +4964,8 @@ MonoBehaviour:
   _explosionParticle: {fileID: 7803735973588976874}
   _rigidbody: {fileID: 3630252096125873900}
   _mesh: {fileID: 5165396853640946343}
+  _damage: 6
+  _playerDamage: 3
 --- !u!54 &3630252096125873900
 Rigidbody:
   m_ObjectHideFlags: 0

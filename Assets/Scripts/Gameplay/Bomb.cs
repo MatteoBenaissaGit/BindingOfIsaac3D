@@ -15,7 +15,7 @@ namespace Gameplay
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Transform _mesh;
         [SerializeField] private int _damage = 6;
-        [SerializeField] private int _playerDamage = 6;
+        [SerializeField] private int _playerDamage = 3;
         
         public Rigidbody Rigidbody => _rigidbody;
         
