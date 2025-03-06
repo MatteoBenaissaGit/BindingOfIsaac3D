@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderObjectsIsaacOutline
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 400
+    passTag: RenderObjectsIsaacOutline
+    Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderObjectsEnemiesOutline
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 300
+    passTag: RenderObjectsEnemiesOutline
+    Event: 400
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -94,12 +94,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderObjectsIsaac
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 450
+    passTag: RenderObjectsIsaac
+    Event: 350
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -143,10 +143,10 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -8862808993393078107}
+  - {fileID: -4102406389071172510}
   - {fileID: -5577285768972993936}
   - {fileID: 3450212283572743481}
-  - {fileID: -4102406389071172510}
-  m_RendererFeatureMap: a510ab7c2dfa008570fa8591248099b239ed0abaca9de12f62ac1ee71f5311c7
+  m_RendererFeatureMap: a510ab7c2dfa008562ac1ee71f5311c770fa8591248099b239ed0abaca9de12f
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -195,12 +195,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: RenderObjectsEnemy
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 300
+    passTag: RenderObjectsEnemy
+    Event: 450
     filterSettings:
       RenderQueueType: 0
       LayerMask:

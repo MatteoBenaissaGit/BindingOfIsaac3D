@@ -14,6 +14,8 @@ namespace Gameplay
         [SerializeField] private ParticleSystem _explosionParticle;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Transform _mesh;
+        [SerializeField] private int _damage = 6;
+        [SerializeField] private int _playerDamage = 6;
         
         public Rigidbody Rigidbody => _rigidbody;
         
@@ -41,7 +43,7 @@ namespace Gameplay
             {
                 if (hits[i].collider.TryGetComponent(out GameEntity entity))
                 {
-                    entity.OnHit(3, IHittable.HitOrigin.Bomb);
+                    entity.OnHit(entity.Team == TeamType.Player ? _playerDamage : _damage, IHittable.HitOrigin.Bomb);
                 }
             }
             

@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a042001cbb4be114c91a78778d48fe1e, type: 3}
+  m_Name: Behavior_BigPoop
+  m_EditorClassIdentifier: 
+  GameEffects:
+  - rid: 6629780386387591168
+  - rid: 6629780386387591169
+  - rid: 6629780386387591170
+  - rid: 6629780386387591171
+  - rid: 6629780386387591172
+  - rid: 6629780386387591173
+  - rid: 6629780386387591174
+  - rid: 6629780386387591177
+  - rid: 6629780386387591176
+  - rid: 6629780386387591178
+  - rid: 6629780386387591175
+  references:
+    version: 2
+    RefIds:
+    - rid: 6629780386387591168
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 0.5
+          Key: 
+    - rid: 6629780386387591169
+      type: {class: GetPlayerEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        SaveKey: Player
+    - rid: 6629780386387591170
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: OwnerPosition
+    - rid: 6629780386387591171
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Player
+        SaveKey: PlayerPosition
+    - rid: 6629780386387591172
+      type: {class: GetDirectionToEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Destination: PlayerPosition
+        SaveKey: Direction
+    - rid: 6629780386387591173
+      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction: Direction
+        Force:
+          TypeValue: 30
+          Key: 
+    - rid: 6629780386387591174
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 1
+          Key: 
+    - rid: 6629780386387591175
+      type: {class: Die, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 6629780386387591176
+      type: {class: DamageInRadius, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerNewPosition
+        Radius:
+          TypeValue: 3
+          Key: 
+        Damage:
+          TypeValue: 2
+          Key: 
+        Team: 2
+        Origin: 1
+    - rid: 6629780386387591177
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: OwnerNewPosition
+    - rid: 6629780386387591178
+      type: {class: ShakeCamera, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Duration:
+          TypeValue: 0.3
+          Key: 
