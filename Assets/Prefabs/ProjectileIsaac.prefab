@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3118765214582034061}
   - component: {fileID: 4754980614384653530}
   - component: {fileID: 7585305830009775477}
-  - component: {fileID: 2240433512338926484}
+  - component: {fileID: 102904849714083141}
   m_Layer: 0
   m_Name: ProjectileIsaac
   m_TagString: Untagged
@@ -79,8 +79,8 @@ MonoBehaviour:
   <Data>k__BackingField: {fileID: 11400000, guid: ecfb3689b8f50e44b87306d5124d582b, type: 2}
   _rigidbody: {fileID: 4754980614384653530}
   _destroyParticles: {fileID: 7317713755839168176}
---- !u!135 &2240433512338926484
-SphereCollider:
+--- !u!136 &102904849714083141
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,9 +97,11 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.31
+  m_Height: 1.84
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &8316517181815503040
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,6 +56,12 @@ namespace MBLib.GameEventManager
         
         public void Update()
         {
+            if (_currentEffect >= GameEffects.Count)
+            {
+                GameEventsManager.KillEvent(this);
+                return;
+            }
+            
             GameEffect effect = GameEffects[_currentEffect];
             
             if (effect.Execute(this) == false)
@@ -70,10 +76,6 @@ namespace MBLib.GameEventManager
             }
 
             _currentEffect++;
-            if (_currentEffect >= GameEffects.Count)
-            {
-                GameEventsManager.KillEvent(this);
-            }
         }
     }
 }

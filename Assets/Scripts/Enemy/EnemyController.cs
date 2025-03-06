@@ -80,8 +80,11 @@ namespace Enemy
 
         public void Die()
         {
-            _deathParticle.Play();
-            _deathParticle.transform.parent = null;
+            if (_deathParticle != null)
+            {
+                _deathParticle.Play();
+                _deathParticle.transform.parent = null;
+            }
             
             GameEventsManager.KillEvent(_behaviorGuid);
             
