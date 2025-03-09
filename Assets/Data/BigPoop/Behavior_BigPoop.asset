@@ -100,7 +100,7 @@ MonoBehaviour:
       data:
         Enabled: 1
         Timer:
-          TypeValue: 1
+          TypeValue: 0.8
           Key: 
     - rid: 6629780386387591175
       type: {class: Die, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
