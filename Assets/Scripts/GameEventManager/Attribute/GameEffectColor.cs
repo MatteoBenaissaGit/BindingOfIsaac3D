@@ -13,6 +13,8 @@ namespace MBLib.GameEventManager.Attribute
         public const KnownColor AI = KnownColor.DodgerBlue;
         public const KnownColor COMMON = KnownColor.Gold;
         public const KnownColor AUDIO = KnownColor.Bisque;
+        public const KnownColor TIMER = KnownColor.Chartreuse;
+        public const KnownColor CONDITION = KnownColor.Red;
     }
     
     [AttributeUsage(AttributeTargets.Class)]

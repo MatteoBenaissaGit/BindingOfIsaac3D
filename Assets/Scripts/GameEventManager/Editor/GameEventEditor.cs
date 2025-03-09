@@ -145,6 +145,8 @@ namespace Script.Editor
 
             foreach (Type type in _types)
             {
+                if (type.IsAbstract) continue;
+                
                 GameEffectName nameAttribute = Attribute.GetCustomAttribute(type, typeof(GameEffectName)) as GameEffectName;
                 string displayName = nameAttribute != null ? nameAttribute.Name : type.Name;
                 
