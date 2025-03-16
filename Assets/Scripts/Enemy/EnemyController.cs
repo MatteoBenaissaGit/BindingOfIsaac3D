@@ -28,6 +28,7 @@ namespace Enemy
         [SerializeField] private ParticleSystem _deathParticle;
 
         public EnemyGameplayData GameplayData { get; private set; }
+        public Action<EnemyController> OnDie { get; set; }
         
         public static string OWNER = "Owner";
 
@@ -87,6 +88,8 @@ namespace Enemy
             }
             
             GameEventsManager.KillEvent(_behaviorGuid);
+            
+            OnDie?.Invoke(this);
             
             Destroy(gameObject);
         }

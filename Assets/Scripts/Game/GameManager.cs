@@ -1,7 +1,7 @@
 ﻿using System;
 using Character;
 using Data;
-using Dungeon;
+using DungeonAndRoom;
 using Inputs;
 using MBLib.SingletonClassBase;
 using UI;
@@ -18,10 +18,10 @@ namespace Game
         [Header("Game")]
         [SerializeField] private CharacterController _characterPrefab;
         [SerializeField] private DungeonData _dungeonData;
-        [SerializeField] private RoomController _room;
-        
+        [SerializeField] private RoomController _roomController;
+
         public InputsManager Inputs { get; private set; }
-        public Dungeon.Dungeon Dungeon { get; private set; }
+        public Dungeon DungeonController { get; private set; }
         public CharacterController Character { get; private set; }
 
         private void Start()
@@ -29,12 +29,10 @@ namespace Game
             Inputs = new InputsManager();
             Inputs.Initialize();
 
-            Dungeon = new Dungeon.Dungeon();
-            Dungeon.GenerateDungeon(_dungeonData);
-            
-            _room.Set(Dungeon.CurrentRoom);
-            
             InitializeCharacter();
+            
+            DungeonController = Dungeon.GenerateDungeon(_dungeonData);
+            SetNextRoom(DungeonController.CurrentRoom);
         }
 
         private void Update()
@@ -46,8 +44,21 @@ namespace Game
         private void InitializeCharacter()
         {
             Character = Instantiate(_characterPrefab);
+            
             Vector3 offset = new Vector3(0, Character.TopDown.Height / 2, 0);
-            Character.transform.SetPositionAndRotation(_room.DefaultSpawnPoint.position + offset, _room.DefaultSpawnPoint.rotation);
+            Character.transform.SetPositionAndRotation(_roomController.DefaultSpawnPoint.position + offset, _roomController.DefaultSpawnPoint.rotation);
+        }
+
+        public void SetNextRoom(Room room)
+        {
+            DungeonController.CurrentRoom = room;
+            
+            _roomController.Set(room);
+            
+            Vector3 offset = new Vector3(0, Character.TopDown.Height / 2, 0);
+            Character.transform.SetPositionAndRotation(_roomController.DefaultSpawnPoint.position + offset, _roomController.DefaultSpawnPoint.rotation);
+            
+            _roomController.StartRoom();
         }
     }
 }

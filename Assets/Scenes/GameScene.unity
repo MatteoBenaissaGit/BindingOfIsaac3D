@@ -1421,7 +1421,7 @@ MonoBehaviour:
   <UI>k__BackingField: {fileID: 1606749032}
   _characterPrefab: {fileID: 8724934673072524399, guid: 65aa2f451d45dba40abee807e78243b0, type: 3}
   _dungeonData: {fileID: 11400000, guid: 05b76a73806f00a4a81a0d35c47c9d72, type: 2}
-  _room: {fileID: 1972303184}
+  _roomController: {fileID: 1972303184}
 --- !u!4 &1606749031
 Transform:
   m_ObjectHideFlags: 0
