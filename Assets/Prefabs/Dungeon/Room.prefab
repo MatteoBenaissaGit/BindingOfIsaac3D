@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnPoint: {fileID: 3514805387842937595}
+  _roomPrefabPosition: {fileID: 3514805387842937595}
   _upDoor: {fileID: 5110042656676325653}
   _downDoor: {fileID: 2660444307441572276}
   _leftDoor: {fileID: 1788417819836784258}

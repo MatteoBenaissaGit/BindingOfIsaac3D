@@ -34,10 +34,9 @@ namespace Enemy
 
         private Guid _behaviorGuid;
         
-        private void Start()
+        public void StartBehavior()
         {
             GameplayData = new(_data.Life);
-            
             _behaviorGuid = GameEventsManager.PlayEvent(_behavior, (OWNER, this));
         }
 

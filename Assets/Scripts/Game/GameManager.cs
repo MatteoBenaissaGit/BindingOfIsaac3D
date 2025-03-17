@@ -30,8 +30,10 @@ namespace Game
             Inputs.Initialize();
 
             InitializeCharacter();
+
+            DungeonController = new Dungeon();
+            DungeonController.GenerateDungeon(_dungeonData);
             
-            DungeonController = Dungeon.GenerateDungeon(_dungeonData);
             SetNextRoom(DungeonController.CurrentRoom);
         }
 

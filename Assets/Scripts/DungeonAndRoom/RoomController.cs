@@ -11,11 +11,13 @@ namespace DungeonAndRoom
     public class RoomController : MonoBehaviour
     {
         [SerializeField] private Transform _defaultSpawnPoint;
+        [SerializeField] private Transform _roomPrefabPosition;
         [SerializeField] private Door _upDoor, _downDoor, _leftDoor, _rightDoor;
         
         public Room CurrentRoom { get; private set; }
         public Transform DefaultSpawnPoint => _defaultSpawnPoint;
-
+        
+        private InstantiableRoom _currentRoomPrefab;
         private List<EnemyController> _enemies = new();
 
         public void Set(Room room)
@@ -28,17 +30,30 @@ namespace DungeonAndRoom
             _rightDoor.Close();
             
             CurrentRoom = room;
+
+            if (_currentRoomPrefab != null)
+            {
+                Destroy(_currentRoomPrefab.gameObject);
+            }
+            _currentRoomPrefab = Instantiate(room.Data.LevelPrefab, _roomPrefabPosition.position, Quaternion.identity);
+            
         }
 
         public void StartRoom()
         {
-            //TODO spawn enemies & objects
-            //TODO sub to enemies die event
+            foreach (EnemyController enemy in _currentRoomPrefab.Enemies)
+            {
+                enemy.StartBehavior();
+                enemy.OnDie += CheckForRoomEnd;
+            }
+            _enemies = new List<EnemyController>(_currentRoomPrefab.Enemies);
         }
 
         private void CheckForRoomEnd(EnemyController deadEnemy)
         {
             _enemies.Remove(deadEnemy);
+            deadEnemy.OnDie -= CheckForRoomEnd;
+            
             if (_enemies.Count <= 0)
             {
                 EndRoom();
