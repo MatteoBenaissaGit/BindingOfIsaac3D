@@ -1,3 +1,4 @@
+using DG.Tweening;
 using DungeonAndRoom;
 using Game;
 using UnityEngine;
@@ -7,11 +8,21 @@ namespace Gameplay
 {
     public class Door : MonoBehaviour
     {
-        private Room _room;
+        [SerializeField] private float _openTweenTime;
+        [SerializeField] private Ease _openTweenEase;
+        [SerializeField] private float _closeTweenTime;
+        [SerializeField] private Ease _closeTweenEase;
         
+        private Room _room;
+        private Vector3 _baseScale;
+
+        private void Awake()
+        {
+            _baseScale = transform.localScale;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"{other.gameObject.name}");
             if (other.gameObject.GetComponent<CharacterController>() == null) return;
             
             GameManager.Instance.SetNextRoom(_room);
@@ -21,11 +32,17 @@ namespace Gameplay
         {
             gameObject.SetActive(true);
             _room = room;
+
+            transform.DOComplete();
+            transform.localScale = Vector3.zero;
+            transform.DOScale(_baseScale, _openTweenTime).SetEase(_openTweenEase);
         }
 
         public void Close()
         {
-            gameObject.SetActive(false);
+            transform.DOComplete();
+            transform.localScale = _baseScale;
+            transform.DOScale(Vector3.zero, _closeTweenTime).SetEase(_closeTweenEase).OnComplete(() => gameObject.SetActive(false));
         }
     }
 }

@@ -10,6 +10,7 @@ namespace DungeonAndRoom
     {
         public Room CurrentRoom { get; set; }
         public Room[,] Rooms { get; private set; }
+        public Vector2Int Size => new(_data.Size.x, _data.Size.y);
         
         private Room[,] _rooms;
         private DungeonData _data;
@@ -25,6 +26,7 @@ namespace DungeonAndRoom
                 for (int y = 0; y < data.Size.y; y++)
                 {
                     Rooms[x, y] = new Room(_data.GetRandomRoom());
+                    Rooms[x, y].Coordinates = new Vector2Int(x, y);
                 }
             }
             

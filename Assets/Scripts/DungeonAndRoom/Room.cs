@@ -1,4 +1,5 @@
 ﻿using Data;
+using UnityEngine;
 
 namespace DungeonAndRoom
 {
@@ -13,6 +14,8 @@ namespace DungeonAndRoom
         }
         
         public RoomData Data { get; private set; }
+        
+        public Vector2Int Coordinates { get; set; }
 
         public bool HasUpRoom => UpRoom != null;
         public Room UpRoom;

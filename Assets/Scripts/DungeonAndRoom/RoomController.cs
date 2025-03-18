@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Enemy;
 using Gameplay;
 using UnityEngine;
@@ -67,5 +68,17 @@ namespace DungeonAndRoom
             if (CurrentRoom.HasLeftRoom) _leftDoor.Open(CurrentRoom.LeftRoom);
             if (CurrentRoom.HasRightRoom) _rightDoor.Open(CurrentRoom.RightRoom);
         }
+        
+        #if UNITY_EDITOR
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                _enemies[0].HitDamage(99999);    
+            }
+        }
+
+#endif
     }
 }

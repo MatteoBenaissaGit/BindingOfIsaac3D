@@ -33,6 +33,8 @@ namespace Game
 
             DungeonController = new Dungeon();
             DungeonController.GenerateDungeon(_dungeonData);
+
+            UI.MiniMap.Initialize(DungeonController);
             
             SetNextRoom(DungeonController.CurrentRoom);
         }
@@ -53,13 +55,20 @@ namespace Game
 
         public void SetNextRoom(Room room)
         {
-            DungeonController.CurrentRoom = room;
-            
             _roomController.Set(room);
             
             Vector3 offset = new Vector3(0, Character.TopDown.Height / 2, 0);
-            Character.transform.SetPositionAndRotation(_roomController.DefaultSpawnPoint.position + offset, _roomController.DefaultSpawnPoint.rotation);
+            var positionSpawn = _roomController.DefaultSpawnPoint.position + offset;
+            if (DungeonController.CurrentRoom != room)
+            {
+                var roomOffset = DungeonController.CurrentRoom.Coordinates - room.Coordinates;
+                positionSpawn += new Vector3(roomOffset.x,0,roomOffset.y) * 8;
+            }
+            Character.transform.SetPositionAndRotation(positionSpawn, _roomController.DefaultSpawnPoint.rotation);
             
+            DungeonController.CurrentRoom = room;
+            UI.MiniMap.SetCurrentRoom(DungeonController.CurrentRoom.Coordinates);
+
             _roomController.StartRoom();
         }
     }
