@@ -36,12 +36,17 @@ namespace DungeonAndRoom
             {
                 Destroy(_currentRoomPrefab.gameObject);
             }
-            _currentRoomPrefab = Instantiate(room.Data.LevelPrefab, _roomPrefabPosition.position, Quaternion.identity);
+            _currentRoomPrefab = Instantiate(room.Instantiable, _roomPrefabPosition.position, Quaternion.identity);
             
         }
 
         public void StartRoom()
         {
+            if (_currentRoomPrefab.Enemies.Count <= 0)
+            {
+                EndRoom();
+                return;
+            }
             foreach (EnemyController enemy in _currentRoomPrefab.Enemies)
             {
                 enemy.StartBehavior();

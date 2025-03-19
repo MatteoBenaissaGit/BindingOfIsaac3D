@@ -107,5 +107,10 @@ namespace Character
         {
             _canShoot = false;
         }
+        
+        public void Enable()
+        {
+            _canShoot = true;
+        }
     }
 }

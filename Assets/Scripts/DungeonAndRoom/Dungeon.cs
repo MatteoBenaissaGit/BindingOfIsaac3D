@@ -44,6 +44,18 @@ namespace DungeonAndRoom
 
             //get random starting room
             CurrentRoom = Rooms[Random.Range(0, data.Size.x), Random.Range(0, data.Size.y)];
+            CurrentRoom.RoomType = RoomType.Start;
+            CurrentRoom.Instantiable = data.StartRoom;
+            
+            //set boss room
+            Vector2Int bossCoordinates = new Vector2Int(Random.Range(0, data.Size.x), Random.Range(0, data.Size.y));
+            int tries = 0;
+            while (bossCoordinates == CurrentRoom.Coordinates && tries++ < 100)
+            {
+                bossCoordinates = new Vector2Int(Random.Range(0, data.Size.x), Random.Range(0, data.Size.y));
+            }
+            Rooms[bossCoordinates.x, bossCoordinates.y].RoomType = RoomType.Boss;
+            Rooms[bossCoordinates.x, bossCoordinates.y].Instantiable = data.GetRandomBossRoom();
         }
     }
 }

@@ -81,6 +81,17 @@ namespace Character
             
             Animator.SetTrigger(DeathTriggerAnimator);
             
+            Disable();
+        }
+
+        public void Enable()
+        {
+            TopDown.Enable();
+            Shoot.Enable();
+        }
+        
+        public void Disable()
+        {
             TopDown.Disable();
             Shoot.Disable();
         }

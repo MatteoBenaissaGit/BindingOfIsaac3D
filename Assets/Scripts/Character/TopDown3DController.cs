@@ -130,6 +130,11 @@ namespace Character
             BlockCharacterMovement();
         }
         
+        public void Enable()
+        {
+            _canMove = true;
+        }
+        
         #endregion
 
         #region Animation

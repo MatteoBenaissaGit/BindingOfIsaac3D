@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DungeonAndRoom;
+using UnityEngine;
 
 namespace Data
 {
@@ -9,11 +10,18 @@ namespace Data
     public class DungeonData : ScriptableObject
     {
         [field:SerializeField] public Vector2Int Size { get; private set; }
-        [field:SerializeField] public RoomData[] Rooms { get; private set; }
+        [field:SerializeField] public InstantiableRoom[] Rooms { get; private set; }
+        [field:SerializeField] public InstantiableRoom[] BossRooms { get; private set; }
+        [field:SerializeField] public InstantiableRoom StartRoom { get; private set; }
 
-        public RoomData GetRandomRoom()
+        public InstantiableRoom GetRandomRoom()
         {
             return Rooms[Random.Range(0, Rooms.Length)];
+        }
+        
+        public InstantiableRoom GetRandomBossRoom()
+        {
+            return BossRooms[Random.Range(0, BossRooms.Length)];
         }
     }
 }

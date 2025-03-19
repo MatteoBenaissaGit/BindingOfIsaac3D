@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using DungeonAndRoom;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +13,21 @@ namespace UI
         [Space] 
         [SerializeField] private float _heightOffset;
         [SerializeField] private float _widthOffset;
+        [Header("Colors")] 
+        [SerializeField] private Color _baseColor = Color.white;
+        [SerializeField] private Color _startColor = Color.white;
+        [SerializeField] private Color _bossColor = Color.red;
+        [SerializeField] private Color _currentColor  = new Color(1f, 0.82f, 0f);
+        [Header("Sprites")]
+        [SerializeField] private Sprite _bossSprite;
 
+        private Dungeon _dungeon;
         private GameObject[,] _miniRooms;
         private GameObject[,] _miniRoomsOutlines;
         
         public void Initialize(Dungeon dungeon)
         {
+            _dungeon = dungeon;
             Vector2Int size = dungeon.Size;
             _miniRooms = new GameObject[size.x, size.y];
             _miniRoomsOutlines = new GameObject[size.x, size.y];
@@ -37,23 +47,34 @@ namespace UI
             }
         }
 
-        public void SetCurrentRoom(Vector2Int coordinates)
+        public void SetCurrentRoom(Vector2Int coordinates, bool instant = false)
         {
             GameObject room = _miniRooms[coordinates.x, coordinates.y];
+
+            float duration = instant ? 0 : 1f;
             
             for (int x = 0; x < _miniRooms.GetLength(0); x++)
             {
                 for (int y = 0; y < _miniRooms.GetLength(1); y++)
                 {
-                    _miniRooms[x, y].GetComponent<Image>().color = Color.white;
+                    Color color = _dungeon.Rooms[x, y].RoomType switch
+                    {
+                        RoomType.Start => _startColor,
+                        RoomType.Boss => _bossColor,
+                        RoomType.Normal => _baseColor,
+                        _ => throw new Exception()
+                    };
+                    
+                    _miniRooms[x, y].GetComponent<Image>().color = color;
                     _miniRooms[x, y].transform.DOComplete();
-                    _miniRooms[x, y].transform.DOLocalMove(new Vector3((x - coordinates.x) * _widthOffset, (y - coordinates.y) * _heightOffset, 0), 0.2f);
+                    _miniRooms[x, y].transform.DOLocalMove(new Vector3((x - coordinates.x) * _widthOffset, (y - coordinates.y) * _heightOffset, 0), duration);
+                    
                     _miniRoomsOutlines[x, y].transform.DOComplete();
-                    _miniRoomsOutlines[x, y].transform.DOLocalMove(new Vector3((x - coordinates.x) * _widthOffset, (y - coordinates.y) * _heightOffset, 0), 0.2f);
+                    _miniRoomsOutlines[x, y].transform.DOLocalMove(new Vector3((x - coordinates.x) * _widthOffset, (y - coordinates.y) * _heightOffset, 0), duration);
                 }    
             }
             
-            room.GetComponent<Image>().color = new Color(1f, 0.82f, 0f);
+            room.GetComponent<Image>().color = _currentColor;
         }
     }
 }

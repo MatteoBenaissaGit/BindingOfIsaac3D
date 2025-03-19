@@ -30,10 +30,11 @@ namespace Gameplay
 
         public void Open(Room room)
         {
-            gameObject.SetActive(true);
             _room = room;
 
             transform.DOComplete();
+            
+            gameObject.SetActive(true);
             transform.localScale = Vector3.zero;
             transform.DOScale(_baseScale, _openTweenTime).SetEase(_openTweenEase);
         }
