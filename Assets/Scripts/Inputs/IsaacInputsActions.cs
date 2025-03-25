@@ -214,6 +214,116 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""a4336d03-9835-4894-999b-ac6cfa01e8f2"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ce9bcf7-267a-47e8-b1bd-ac90f629eea9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""d978f2b4-1269-4192-804a-6a8a32e17399"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Echap"",
+                    ""type"": ""Button"",
+                    ""id"": ""df3fe878-c1d8-4b0d-ba3a-9f745c704db6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""82a232aa-ff9b-4ef0-a2e8-7c7ee0d70db0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29060fba-e1a1-4947-bdac-27fb3ebb9e82"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6c465e4-9ee8-4956-851b-14625726b181"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfdf2b1f-f14b-4f47-8b31-b4740612657c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20f0a96d-1d8f-4b0c-9f95-cd5d24e5509a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""895689d3-8535-41a7-bbfb-bfb7a39db9f5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Echap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""870cef6c-d20a-41f7-9cd3-67baf60ee83b"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -227,6 +337,12 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         m_Character_ShootUp = m_Character.FindAction("ShootUp", throwIfNotFound: true);
         m_Character_ShootDown = m_Character.FindAction("ShootDown", throwIfNotFound: true);
         m_Character_ShootBomb = m_Character.FindAction("ShootBomb", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Up = m_Menu.FindAction("Up", throwIfNotFound: true);
+        m_Menu_Down = m_Menu.FindAction("Down", throwIfNotFound: true);
+        m_Menu_Echap = m_Menu.FindAction("Echap", throwIfNotFound: true);
+        m_Menu_Enter = m_Menu.FindAction("Enter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -378,6 +494,76 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         }
     }
     public CharacterActions @Character => new CharacterActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_Up;
+    private readonly InputAction m_Menu_Down;
+    private readonly InputAction m_Menu_Echap;
+    private readonly InputAction m_Menu_Enter;
+    public struct MenuActions
+    {
+        private @IsaacInputsActions m_Wrapper;
+        public MenuActions(@IsaacInputsActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_Menu_Up;
+        public InputAction @Down => m_Wrapper.m_Menu_Down;
+        public InputAction @Echap => m_Wrapper.m_Menu_Echap;
+        public InputAction @Enter => m_Wrapper.m_Menu_Enter;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @Echap.started += instance.OnEchap;
+            @Echap.performed += instance.OnEchap;
+            @Echap.canceled += instance.OnEchap;
+            @Enter.started += instance.OnEnter;
+            @Enter.performed += instance.OnEnter;
+            @Enter.canceled += instance.OnEnter;
+        }
+
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @Echap.started -= instance.OnEchap;
+            @Echap.performed -= instance.OnEchap;
+            @Echap.canceled -= instance.OnEchap;
+            @Enter.started -= instance.OnEnter;
+            @Enter.performed -= instance.OnEnter;
+            @Enter.canceled -= instance.OnEnter;
+        }
+
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface ICharacterActions
     {
         void OnMovementHorizontal(InputAction.CallbackContext context);
@@ -387,5 +573,12 @@ public partial class @IsaacInputsActions: IInputActionCollection2, IDisposable
         void OnShootUp(InputAction.CallbackContext context);
         void OnShootDown(InputAction.CallbackContext context);
         void OnShootBomb(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnEchap(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
     }
 }

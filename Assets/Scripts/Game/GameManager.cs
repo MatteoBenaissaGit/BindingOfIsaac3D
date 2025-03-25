@@ -27,7 +27,6 @@ namespace Game
         private void Start()
         {
             Inputs = new InputsManager();
-            Inputs.Initialize();
 
             InitializeCharacter();
 
