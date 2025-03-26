@@ -18,8 +18,9 @@ namespace MBLib.GameEventManager
             {
                 Events.Remove(toKillEvent);
             }
-            
-            foreach (GameEventInstance eventInstance in Events)
+
+            List<GameEventInstance> instanceEventList = new List<GameEventInstance>(Events);
+            foreach (GameEventInstance eventInstance in instanceEventList)
             {
                 eventInstance.Update();
             }

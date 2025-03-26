@@ -55,6 +55,12 @@ namespace DungeonAndRoom
             _enemies = new List<EnemyController>(_currentRoomPrefab.Enemies);
         }
 
+        public void AddEnemyToRoom(EnemyController enemy)
+        {
+            _enemies.Add(enemy);
+            enemy.OnDie += CheckForRoomEnd;
+        }
+        
         private void CheckForRoomEnd(EnemyController deadEnemy)
         {
             _enemies.Remove(deadEnemy);

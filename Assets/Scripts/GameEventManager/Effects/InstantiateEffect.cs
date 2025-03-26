@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Enemy;
+using Game;
 using MBLib.GameEventManager.Attribute;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -20,12 +22,19 @@ namespace MBLib.GameEventManager.Effects
 
         public override bool Execute(GameEventInstance gameEvent)
         {
-            if (gameEvent.GetParameter<Vector3>(PositionKey, out Vector3 position) == false)
+            if (gameEvent.GetParameter(PositionKey, out Vector3 position) == false)
             {
                 return true;
             }
             
-            Object.Instantiate(Prefab, position + Offset, Quaternion.identity);
+            GameObject objectInstance = Object.Instantiate(Prefab, position + Offset, Quaternion.identity);
+            
+            if (objectInstance.gameObject.TryGetComponent(out EnemyController enemy))
+            {
+                GameManager.Instance.RoomController.AddEnemyToRoom(enemy);
+                enemy.StartBehavior();
+            }
+            
             return true;
         }
         

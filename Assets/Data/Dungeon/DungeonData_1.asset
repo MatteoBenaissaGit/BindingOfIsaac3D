@@ -15,6 +15,10 @@ MonoBehaviour:
   <Size>k__BackingField: {x: 3, y: 3}
   <Rooms>k__BackingField:
   - {fileID: 1645194543203501270, guid: 14b6d3d6b7eb2344cb69e076192f4827, type: 3}
+  - {fileID: 8555868145220470399, guid: f96e64f4a4f24ad40a87cb6c8f2d27f1, type: 3}
+  - {fileID: 292398810291873196, guid: 5101830b6b6050849841e98354f2a9c5, type: 3}
+  - {fileID: 3876111415120483203, guid: 90c312d0310bd484d9dd0c39828d29b3, type: 3}
+  - {fileID: 3234938363389561319, guid: fd91ea71633f0a74ca49087a461d0901, type: 3}
   <BossRooms>k__BackingField:
   - {fileID: 1645194543203501270, guid: 14b6d3d6b7eb2344cb69e076192f4827, type: 3}
   <StartRoom>k__BackingField: {fileID: 9052487070041897566, guid: bb3e9d62b36ffe1409a9e4371b33421d, type: 3}

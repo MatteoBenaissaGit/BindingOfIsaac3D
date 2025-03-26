@@ -20,6 +20,12 @@ namespace Menu
             _inputs = new InputsManager();
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _inputs.Kill();
+        }
+
         private void Start()
         {
             ShowMenu(StartMenu);

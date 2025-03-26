@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CharacterData_Isaac
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 7
-  <ShootCooldown>k__BackingField: 0.75
+  <ShootCooldown>k__BackingField: 0.5
   <BombShootForce>k__BackingField: 10

@@ -20,6 +20,7 @@ namespace Game
         [SerializeField] private DungeonData _dungeonData;
         [SerializeField] private RoomController _roomController;
 
+        public RoomController RoomController => _roomController;
         public InputsManager Inputs { get; private set; }
         public Dungeon DungeonController { get; private set; }
         public CharacterController Character { get; private set; }
