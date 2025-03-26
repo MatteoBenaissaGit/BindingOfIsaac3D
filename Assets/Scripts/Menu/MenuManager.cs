@@ -25,11 +25,6 @@ namespace Menu
             ShowMenu(StartMenu);
         }
 
-        private void Update()
-        {
-            _inputs.Update();
-        }
-
         public void ShowMenu(Menu menu)
         {
             if (_currentMenu != null)

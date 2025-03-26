@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Inputs
 {
@@ -65,7 +66,7 @@ namespace Inputs
             if (_shootUp) OnShootInput?.Invoke(Up);
             if (_shootDown) OnShootInput?.Invoke(Down);
         }
-        
+
         public void Kill()
         {
             _isaacInputsActions.Disable();

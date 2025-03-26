@@ -33,6 +33,7 @@ namespace Menu
             {
                 _currentButtonIndex = 0;
             }
+            UpdateArrowPosition();
         }
 
         private void Up()
@@ -43,6 +44,7 @@ namespace Menu
             {
                 _currentButtonIndex = _button.Length - 1;
             }
+            UpdateArrowPosition();
         }
 
         private void Enter()
