@@ -17,17 +17,17 @@ namespace Gameplay
         public ItemType Type;
         public Sprite Icon;
     }
-    
+
     [RequireComponent(typeof(SphereCollider))]
     public class PickableItem : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private ItemInfos[] _infos;
-        
+
         private SphereCollider _collider;
         private ItemType _type;
         private int _amount;
-        
+
         private void Start()
         {
             _collider = GetComponent<SphereCollider>();
@@ -60,17 +60,20 @@ namespace Gameplay
             switch (_type)
             {
                 case ItemType.Life:
-                    character.AddLife(_amount);
+                    if (character.AddLife(_amount))
+                    {
+                        Destroy(gameObject);
+                    }
                     break;
                 case ItemType.Bomb:
                     character.AddBomb(_amount);
+                    Destroy(gameObject);
                     break;
                 case ItemType.Money:
                     character.AddMoney(_amount);
+                    Destroy(gameObject);
                     break;
-            } 
-            
-            Destroy(gameObject);
+            }
         }
     }
 }

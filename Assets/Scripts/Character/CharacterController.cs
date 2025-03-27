@@ -69,19 +69,24 @@ namespace Character
             }
         }
 
-        public void AddLife(int value)
+        public bool AddLife(int value)
         {
-            GameplayData.Life += value;
-            if (GameplayData.Life > GameplayData.MaxLife)
+            if (value > 0 && GameplayData.Life >= GameplayData.MaxLife) return false;
+            
+            if (GameplayData.Life + value > GameplayData.MaxLife)
             {
                 GameplayData.Life = GameplayData.MaxLife;
             }
-            else if (GameplayData.Life < 0)
+            
+            GameplayData.Life += value;
+            if (GameplayData.Life < 0)
             {
                 GameplayData.Life = 0;
             }
             
             GameManager.Instance.UI.Life.UpdateLife(GameplayData.Life);
+
+            return true;
         }
 
         public void AddBomb(int value)
