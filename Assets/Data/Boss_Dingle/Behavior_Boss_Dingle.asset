@@ -22,6 +22,8 @@ MonoBehaviour:
   - rid: 3457532177178689537
   - rid: 3457532177178689540
   - rid: 3457532177178689538
+  - rid: 3286168202268377088
+  - rid: 3286168202268377089
   - rid: 7164033558809411597
   - rid: 7164033558809411598
   - rid: 7164033558809411600
@@ -40,6 +42,7 @@ MonoBehaviour:
   - rid: 7164033558809411596
   - rid: 7164033558809411593
   - rid: 7164033558809411592
+  - rid: 3286168202268377090
   - rid: 6629780386387591173
   - rid: 7164033558809411603
   - rid: 7164033558809411604
@@ -52,6 +55,27 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3286168202268377088
+      type: {class: Feedback, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Type: 1
+        Force: 2
+        Duration: 0.5
+    - rid: 3286168202268377089
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 0.2
+          Key: 
+    - rid: 3286168202268377090
+      type: {class: Feedback, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Type: 0
+        Force: 2
+        Duration: 0.2
     - rid: 3457532177178689536
       type: {class: StartTimer, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
       data:

@@ -30,10 +30,14 @@ namespace Enemy
         [SerializeField] private ParticleSystem _deathParticle;
 
         public EnemyGameplayData GameplayData { get; private set; }
+        public Transform Mesh => _mesh.transform;
+        
         public Action<EnemyController> OnDie { get; set; }
-        public Action<float> OnHit { get; set; }
+        public Action<float> OnGetHit { get; set; }
+        
         
         public static string OWNER = "Owner";
+        
 
         private Guid _behaviorGuid;
         
@@ -74,7 +78,7 @@ namespace Enemy
             }
             
             GameplayData.Life -= damage;
-            OnHit?.Invoke((float)GameplayData.Life / _data.Life);
+            OnGetHit?.Invoke((float)GameplayData.Life / _data.Life);
 
             if (GameplayData.Life <= 0)
             {

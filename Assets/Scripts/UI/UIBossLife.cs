@@ -26,7 +26,7 @@ public class UIBossLife : MonoBehaviour
         gameObject.SetActive(true);
 
         _enemy = enemy;
-        _enemy.OnHit += UpdateLifeBar;
+        _enemy.OnGetHit += UpdateLifeBar;
     }
     
     public void Hide()
@@ -35,7 +35,7 @@ public class UIBossLife : MonoBehaviour
 
         if (_enemy != null)
         {
-            _enemy.OnHit -= UpdateLifeBar;
+            _enemy.OnGetHit -= UpdateLifeBar;
         }
     }
 }
