@@ -59,6 +59,8 @@ namespace MBLib.GameEventManager
             {
                 gameEffect.Initialize(this);
             }
+            
+            Timers.Clear();
         }
 
         private Stack<(ConditionalGameEffect condition, int index)> _conditions = new();

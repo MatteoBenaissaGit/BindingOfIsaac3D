@@ -65,6 +65,11 @@ namespace Projectiles
         {
             if (_isInitialized == false) return;
             
+            if (other.gameObject.TryGetComponent(out Projectile projectile) && projectile._infos.Team == _infos.Team)
+            {
+                return;
+            }
+            
             if (other.gameObject.TryGetComponent(out Character.GameEntity entity) == false)
             {
                 Kill();

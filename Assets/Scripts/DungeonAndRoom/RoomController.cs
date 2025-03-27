@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Enemy;
+using Game;
 using Gameplay;
 using UnityEngine;
 
@@ -55,6 +56,12 @@ namespace DungeonAndRoom
                 enemy.OnDie += CheckForRoomEnd;
             }
             _enemies = new List<EnemyController>(_currentRoomPrefab.Enemies);
+
+            if (GameManager.Instance.DungeonController.CurrentRoom.RoomType == RoomType.Boss)
+            {
+                GameManager.Instance.UI.BossLife.Show(_enemies[0]);
+                GameManager.Instance.UI.BossLife.Update(1);
+            }
         }
 
         public void AddEnemyToRoom(EnemyController enemy)
@@ -65,8 +72,23 @@ namespace DungeonAndRoom
         
         private void CheckForRoomEnd(EnemyController deadEnemy)
         {
-            _enemies.Remove(deadEnemy);
-            deadEnemy.OnDie -= CheckForRoomEnd;
+            if (GameManager.Instance.DungeonController.CurrentRoom.RoomType == RoomType.Boss && deadEnemy == _enemies[0])
+            {
+                GameManager.Instance.UI.BossLife.Hide();
+                _enemies.Remove(deadEnemy);
+                deadEnemy.OnDie -= CheckForRoomEnd;
+                foreach (var enemy in _enemies)
+                {
+                    enemy.Die(true);
+                    enemy.OnDie -= CheckForRoomEnd;
+                }
+                _enemies.Clear();
+            }
+            else
+            {
+                _enemies.Remove(deadEnemy);
+                deadEnemy.OnDie -= CheckForRoomEnd;
+            }
             
             if (_enemies.Count <= 0)
             {

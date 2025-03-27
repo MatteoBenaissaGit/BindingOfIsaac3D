@@ -1,0 +1,306 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a042001cbb4be114c91a78778d48fe1e, type: 3}
+  m_Name: Behavior_Boss_Dingle
+  m_EditorClassIdentifier: 
+  GameEffects:
+  - rid: 7164033558809411584
+  - rid: 6629780386387591169
+  - rid: 6629780386387591170
+  - rid: 6629780386387591171
+  - rid: 6629780386387591172
+  - rid: 3457532177178689536
+  - rid: 3457532177178689537
+  - rid: 3457532177178689540
+  - rid: 3457532177178689538
+  - rid: 7164033558809411597
+  - rid: 7164033558809411598
+  - rid: 7164033558809411600
+  - rid: 7164033558809411601
+  - rid: 7164033558809411602
+  - rid: 7164033558809411585
+  - rid: 6629780386387591177
+  - rid: 7164033558809411588
+  - rid: 6629780386387591179
+  - rid: 7164033558809411589
+  - rid: 6629780386387591180
+  - rid: 6629780386387591168
+  - rid: 7164033558809411590
+  - rid: 7164033558809411591
+  - rid: 7164033558809411595
+  - rid: 7164033558809411596
+  - rid: 7164033558809411593
+  - rid: 7164033558809411592
+  - rid: 6629780386387591173
+  - rid: 7164033558809411603
+  - rid: 7164033558809411604
+  - rid: 7164033558809411607
+  - rid: 7164033558809411609
+  - rid: 7164033558809411608
+  - rid: 7164033558809411606
+  - rid: 7164033558809411605
+  - rid: 7164033558809411586
+  references:
+    version: 2
+    RefIds:
+    - rid: 3457532177178689536
+      type: {class: StartTimer, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Time: 0.5
+        SaveKey: Timer
+    - rid: 3457532177178689537
+      type: {class: While, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Condition: 1
+        Key: Timer
+    - rid: 3457532177178689538
+      type: {class: End, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 3457532177178689540
+      type: {class: RotateToward, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: Direction
+    - rid: 6629780386387591168
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 1
+          Key: 
+    - rid: 6629780386387591169
+      type: {class: GetPlayerEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        SaveKey: Player
+    - rid: 6629780386387591170
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: OwnerPosition
+    - rid: 6629780386387591171
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Player
+        SaveKey: PlayerPosition
+    - rid: 6629780386387591172
+      type: {class: GetDirectionToEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Destination: PlayerPosition
+        SaveKey: Direction
+    - rid: 6629780386387591173
+      type: {class: AddForceToDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction: Direction
+        Force:
+          TypeValue: 40
+          Key: 
+    - rid: 6629780386387591177
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: OwnerNewPosition
+    - rid: 6629780386387591179
+      type: {class: InstantiateEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Prefab: {fileID: 2247734346002199631, guid: c7d523d4132d2044797011c742356c11, type: 3}
+        PositionKey: SmallPoop_1_Position
+        Offset: {x: 1, y: 0, z: 0}
+    - rid: 6629780386387591180
+      type: {class: InstantiateEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Prefab: {fileID: 2247734346002199631, guid: c7d523d4132d2044797011c742356c11, type: 3}
+        PositionKey: SmallPoop_2_Position
+        Offset: {x: -1, y: 0, z: 0}
+    - rid: 7164033558809411584
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 1
+          Key: 
+    - rid: 7164033558809411585
+      type: {class: WaitEffect, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Timer:
+          TypeValue: 0.5
+          Key: 
+    - rid: 7164033558809411586
+      type: {class: RestartEvent, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 7164033558809411588
+      type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        VectorA:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: OwnerNewPosition
+        VectorB:
+          TypeValue: {x: 2, y: 0, z: 0}
+          Key: 
+        SaveKey: SmallPoop_1_Position
+    - rid: 7164033558809411589
+      type: {class: AddVector3, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        VectorA:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: OwnerNewPosition
+        VectorB:
+          TypeValue: {x: -2, y: 0, z: 0}
+          Key: 
+        SaveKey: SmallPoop_2_Position
+    - rid: 7164033558809411590
+      type: {class: StartTimer, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Time: 0.5
+        SaveKey: PreLaunchTimer
+    - rid: 7164033558809411591
+      type: {class: While, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Condition: 1
+        Key: PreLaunchTimer
+    - rid: 7164033558809411592
+      type: {class: End, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 7164033558809411593
+      type: {class: RotateToward, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: PreLaunchRotation
+    - rid: 7164033558809411595
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Player
+        SaveKey: PlayerPreLaunchPosition
+    - rid: 7164033558809411596
+      type: {class: GetDirectionToEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Destination: PlayerPreLaunchPosition
+        SaveKey: PreLaunchRotation
+    - rid: 7164033558809411597
+      type: {class: ShootProjectile, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Projectile: {fileID: 1927916389396593451, guid: 8a83f045beabef84d8381358f0a1989d, type: 3}
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: Direction
+        Team: 2
+    - rid: 7164033558809411598
+      type: {class: RotateDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: Direction
+        AmountToRotateInDegrees:
+          TypeValue: 20
+          Key: 
+        SaveKey: DirectionProjectile_1
+    - rid: 7164033558809411600
+      type: {class: RotateDirection, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: Direction
+        AmountToRotateInDegrees:
+          TypeValue: -20
+          Key: 
+        SaveKey: DirectionProjectile_2
+    - rid: 7164033558809411601
+      type: {class: ShootProjectile, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Projectile: {fileID: 1927916389396593451, guid: 8a83f045beabef84d8381358f0a1989d, type: 3}
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: DirectionProjectile_1
+        Team: 2
+    - rid: 7164033558809411602
+      type: {class: ShootProjectile, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: OwnerPosition
+        Projectile: {fileID: 1927916389396593451, guid: 8a83f045beabef84d8381358f0a1989d, type: 3}
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: DirectionProjectile_2
+        Team: 2
+    - rid: 7164033558809411603
+      type: {class: StartTimer, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Time: 3
+        SaveKey: EndTimer
+    - rid: 7164033558809411604
+      type: {class: While, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Condition: 1
+        Key: EndTimer
+    - rid: 7164033558809411605
+      type: {class: End, ns: MBLib.GameEventManager.Effects.Conditions, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+    - rid: 7164033558809411606
+      type: {class: RotateToward, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Direction:
+          TypeValue: {x: 0, y: 0, z: 0}
+          Key: EndDirection
+    - rid: 7164033558809411607
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Player
+        SaveKey: EndPlayerPosition
+    - rid: 7164033558809411608
+      type: {class: GetDirectionToEntity, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        Position: EndOwnerPosition
+        Destination: EndPlayerPosition
+        SaveKey: EndDirection
+    - rid: 7164033558809411609
+      type: {class: GetEntityPosition, ns: MBLib.GameEventManager.Effects, asm: Assembly-CSharp}
+      data:
+        Enabled: 1
+        EntityKey: Owner
+        SaveKey: EndOwnerPosition

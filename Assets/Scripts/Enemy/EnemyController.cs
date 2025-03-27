@@ -31,6 +31,7 @@ namespace Enemy
 
         public EnemyGameplayData GameplayData { get; private set; }
         public Action<EnemyController> OnDie { get; set; }
+        public Action<float> OnHit { get; set; }
         
         public static string OWNER = "Owner";
 
@@ -73,6 +74,7 @@ namespace Enemy
             }
             
             GameplayData.Life -= damage;
+            OnHit?.Invoke((float)GameplayData.Life / _data.Life);
 
             if (GameplayData.Life <= 0)
             {
@@ -80,7 +82,7 @@ namespace Enemy
             }
         }
 
-        public void Die()
+        public void Die(bool silent = false)
         {
             if (_deathParticle != null)
             {
@@ -96,7 +98,10 @@ namespace Enemy
             
             //destroy
             GameEventsManager.KillEvent(_behaviorGuid);
-            OnDie?.Invoke(this);
+            if (silent == false)
+            {
+                OnDie?.Invoke(this);
+            }
             Destroy(gameObject);
         }
 
