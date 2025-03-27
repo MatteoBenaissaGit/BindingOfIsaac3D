@@ -19,6 +19,7 @@ namespace Gameplay
         private void Awake()
         {
             _baseScale = transform.localScale;
+            transform.localScale = Vector3.zero;
         }
 
         private void OnTriggerEnter(Collider other)

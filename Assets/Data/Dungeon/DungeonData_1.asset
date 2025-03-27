@@ -22,3 +22,26 @@ MonoBehaviour:
   <BossRooms>k__BackingField:
   - {fileID: 769121133312991786, guid: d333440287646944395b169caa39c5ea, type: 3}
   <StartRoom>k__BackingField: {fileID: 9052487070041897566, guid: bb3e9d62b36ffe1409a9e4371b33421d, type: 3}
+  <RoomsToDestroy>k__BackingField:
+  - Coordinates:
+    - {x: 1, y: 1}
+  - Coordinates:
+    - {x: 0, y: 0}
+    - {x: 2, y: 2}
+  - Coordinates:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+  - Coordinates:
+    - {x: 2, y: 1}
+    - {x: 2, y: 0}
+    - {x: 0, y: 2}
+  - Coordinates:
+    - {x: 0, y: 1}
+    - {x: 0, y: 2}
+  - Coordinates:
+    - {x: 1, y: 0}
+  - Coordinates:
+    - {x: 2, y: 0}
+  - Coordinates:
+    - {x: 0, y: 0}

@@ -18,6 +18,12 @@ namespace Menu
         protected override void InternalAwake()
         {
             _inputs = new InputsManager();
+            
+            StartMenu.Hide();
+            StartMenu.Enable = false;
+         
+            CreditsMenu.Hide();
+            CreditsMenu.Enable = false;
         }
 
         protected override void OnDestroy()

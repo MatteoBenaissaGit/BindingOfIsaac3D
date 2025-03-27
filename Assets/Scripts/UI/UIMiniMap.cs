@@ -35,6 +35,8 @@ namespace UI
             {
                 for (int y = 0; y < size.y; y++)
                 {
+                    if (_dungeon.Rooms[x, y] == null) continue;
+                    
                     _miniRoomsOutlines[x, y] = Instantiate(_miniMapRoom, _miniMapRoomsParent);
                     _miniRoomsOutlines[x, y].GetComponent<Image>().color = Color.black;
                     _miniRoomsOutlines[x, y].transform.localScale *= 1.5f;
@@ -57,6 +59,8 @@ namespace UI
             {
                 for (int y = 0; y < _miniRooms.GetLength(1); y++)
                 {
+                    if (_dungeon.Rooms[x, y] == null) continue;
+                    
                     Color color = _dungeon.Rooms[x, y].RoomType switch
                     {
                         RoomType.Start => _startColor,

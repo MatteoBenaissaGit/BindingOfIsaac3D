@@ -117,6 +117,8 @@ namespace Character
             Animator.SetTrigger(DeathTriggerAnimator);
             
             Disable();
+            
+            GameManager.Instance.EndGame();
         }
 
         public void Enable()

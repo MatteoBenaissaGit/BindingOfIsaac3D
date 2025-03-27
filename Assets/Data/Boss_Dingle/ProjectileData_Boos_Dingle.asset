@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ProjectileData_Boos_Dingle
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 15
-  <Range>k__BackingField: 120
+  <Range>k__BackingField: 180
   <Damage>k__BackingField: 1

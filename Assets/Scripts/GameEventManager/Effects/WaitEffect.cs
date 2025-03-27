@@ -19,7 +19,7 @@ namespace MBLib.GameEventManager.Effects
 
         public override string ToString()
         {
-            return $"Wait {Timer}s";
+            return $"--- Wait {Timer}s ---";
         }
 
         public override bool Execute(GameEventInstance gameEvent)

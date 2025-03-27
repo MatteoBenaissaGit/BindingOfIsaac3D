@@ -15,7 +15,7 @@ public class UIBossLife : MonoBehaviour
         Hide();
     }
 
-    public void Update(float fillAmount)
+    public void UpdateLifeBar(float fillAmount)
     {
         _lifeFillBar.DOComplete();
         _lifeFillBar.DOFillAmount(fillAmount, 0.1f);
@@ -26,7 +26,7 @@ public class UIBossLife : MonoBehaviour
         gameObject.SetActive(true);
 
         _enemy = enemy;
-        _enemy.OnHit += Update;
+        _enemy.OnHit += UpdateLifeBar;
     }
     
     public void Hide()
@@ -35,7 +35,7 @@ public class UIBossLife : MonoBehaviour
 
         if (_enemy != null)
         {
-            _enemy.OnHit -= Update;
+            _enemy.OnHit -= UpdateLifeBar;
         }
     }
 }

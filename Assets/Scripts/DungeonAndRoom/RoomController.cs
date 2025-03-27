@@ -60,7 +60,7 @@ namespace DungeonAndRoom
             if (GameManager.Instance.DungeonController.CurrentRoom.RoomType == RoomType.Boss)
             {
                 GameManager.Instance.UI.BossLife.Show(_enemies[0]);
-                GameManager.Instance.UI.BossLife.Update(1);
+                GameManager.Instance.UI.BossLife.UpdateLifeBar(1);
             }
         }
 
@@ -72,28 +72,41 @@ namespace DungeonAndRoom
         
         private void CheckForRoomEnd(EnemyController deadEnemy)
         {
-            if (GameManager.Instance.DungeonController.CurrentRoom.RoomType == RoomType.Boss && deadEnemy == _enemies[0])
+            if (IsBossEnd(deadEnemy))
             {
-                GameManager.Instance.UI.BossLife.Hide();
-                _enemies.Remove(deadEnemy);
-                deadEnemy.OnDie -= CheckForRoomEnd;
-                foreach (var enemy in _enemies)
-                {
-                    enemy.Die(true);
-                    enemy.OnDie -= CheckForRoomEnd;
-                }
-                _enemies.Clear();
+                return;
             }
-            else
-            {
-                _enemies.Remove(deadEnemy);
-                deadEnemy.OnDie -= CheckForRoomEnd;
-            }
+            
+            _enemies.Remove(deadEnemy);
+            deadEnemy.OnDie -= CheckForRoomEnd;
             
             if (_enemies.Count <= 0)
             {
                 EndRoom();
             }
+        }
+
+        private bool IsBossEnd(EnemyController enemyDead)
+        {
+            if (GameManager.Instance.DungeonController.CurrentRoom.RoomType != RoomType.Boss || enemyDead != _enemies[0])
+            {
+                return false;
+            }
+            
+            GameManager.Instance.UI.BossLife.Hide();
+            _enemies.Remove(enemyDead);
+            enemyDead.OnDie -= CheckForRoomEnd;
+            foreach (var enemy in _enemies)
+            {
+                enemy.Die(true);
+                enemy.OnDie -= CheckForRoomEnd;
+            }
+
+            _enemies.Clear();
+
+            GameManager.Instance.EndGame();
+
+            return true;
         }
 
         private void EndRoom()

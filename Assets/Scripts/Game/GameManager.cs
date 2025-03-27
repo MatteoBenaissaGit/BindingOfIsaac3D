@@ -7,6 +7,7 @@ using Inputs;
 using MBLib.SingletonClassBase;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using CharacterController = Character.CharacterController;
 
 namespace Game
@@ -83,6 +84,12 @@ namespace Game
             
             UI.MiniMap.SetCurrentRoom(DungeonController.CurrentRoom.Coordinates, instant);
             _roomController.StartRoom();
+        }
+
+        public async void EndGame()
+        {
+            await UI.FadeScreen.Show(2);
+            SceneManager.LoadScene("MenuScene");
         }
     }
 }

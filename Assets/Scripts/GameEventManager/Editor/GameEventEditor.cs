@@ -5,6 +5,7 @@ using System.Text;
 using MBLib.GameEventManager;
 using MBLib.GameEventManager.Attribute;
 using MBLib.GameEventManager.Effects;
+using MBLib.GameEventManager.Effects.Conditions;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Script.Editor
         private SerializedProperty _effects;
         private ReorderableList _list;
         private Type[] _types = new Type[]{};
+        private int _conditionIncrement = 0;
         
         private void OnEnable()
         {
@@ -27,6 +29,7 @@ namespace Script.Editor
                     where assemblyType.IsSubclassOf(typeof(GameEffect))
                     select assemblyType).ToArray();
 
+            _conditionIncrement = 0;
             _list = new ReorderableList(serializedObject, _effects, true, true, true, true);
             _list.drawElementCallback = DrawListItems;
             _list.drawHeaderCallback = DrawHeader;
@@ -85,11 +88,36 @@ namespace Script.Editor
 
             rect.x += 30;
             string label = gameEvent.GameEffects[index].ToString();
+            
+            if (feedback is End)
+            {
+                _conditionIncrement--;
+                if (_conditionIncrement < 0) _conditionIncrement = 0;
+            }
+            
+            StringBuilder labelBuilder = new StringBuilder();
+            if (_conditionIncrement > 0)
+            {
+                labelBuilder.Append("|");
+                for (int i = 0; i < _conditionIncrement; i++)
+                {
+                    labelBuilder.Append("--");
+                }
+                labelBuilder.Append("  ");
+            }
+            labelBuilder.Append(label);
+            label = labelBuilder.ToString();
+            
             GUIStyle labelStyle = new GUIStyle();
             labelStyle.fontStyle = FontStyle.Normal;
             labelStyle.normal.textColor = Color.white;
             labelStyle.alignment = TextAnchor.MiddleLeft;
             EditorGUI.LabelField(rect, label, labelStyle);
+            
+            if (feedback is ConditionalGameEffect)
+            {
+                _conditionIncrement++;
+            }
             
             Rect side = rect;
             side.height = 20;
