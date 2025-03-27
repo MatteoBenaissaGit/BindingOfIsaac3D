@@ -45,6 +45,12 @@ namespace DungeonAndRoom
 
         public void StartRoom()
         {
+            foreach (var item in _pickableItems)
+            {
+                Destroy(item);
+            }
+            _pickableItems.Clear();
+            
             if (_currentRoomPrefab.Enemies.Count <= 0)
             {
                 EndRoom();
@@ -117,10 +123,13 @@ namespace DungeonAndRoom
             if (CurrentRoom.HasRightRoom) _rightDoor.Open(CurrentRoom.RightRoom);
         }
         
+        private List<GameObject> _pickableItems = new();
         public void SpawnPickableItem(Vector3 transformPosition, ItemType type, int amount)
         {
             transformPosition.y = 0.5f;
-            Instantiate(_pickableItem, transformPosition, Quaternion.identity).Set(type, amount);
+            PickableItem item = Instantiate(_pickableItem, transformPosition, Quaternion.identity);
+            item.Set(type, amount);
+            _pickableItems.Add(item.gameObject);
         }
         
 #if UNITY_EDITOR

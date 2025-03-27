@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 292398810291873196, guid: 5101830b6b6050849841e98354f2a9c5, type: 3}
   - {fileID: 3876111415120483203, guid: 90c312d0310bd484d9dd0c39828d29b3, type: 3}
   - {fileID: 3234938363389561319, guid: fd91ea71633f0a74ca49087a461d0901, type: 3}
+  - {fileID: 2523456005780290283, guid: 51cc07a5e117c55439ed759bd424a316, type: 3}
+  - {fileID: 6778514468129939239, guid: 0231c1341d612f041ab082f8df72896a, type: 3}
   <BossRooms>k__BackingField:
   - {fileID: 769121133312991786, guid: d333440287646944395b169caa39c5ea, type: 3}
   <StartRoom>k__BackingField: {fileID: 9052487070041897566, guid: bb3e9d62b36ffe1409a9e4371b33421d, type: 3}
