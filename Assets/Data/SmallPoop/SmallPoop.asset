@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e652c976081d45af9508de6a54702a5d, type: 3}
   m_Name: SmallPoop
   m_EditorClassIdentifier: 
+  <Life>k__BackingField: 3
   <DamagePlayerOnContact>k__BackingField: 1
   <ContactDamage>k__BackingField: 1
+  <Drop>k__BackingField:
+    DropRate: 0.15
+    HealthDropChance: 0.72854584
+    BombDropChance: 0.13572706
+    MoneyDropChance: 0.13572706
+    HealthDropAmount: 1
+    BombDropAmount: 1
+    MoneyDropAmount: 5

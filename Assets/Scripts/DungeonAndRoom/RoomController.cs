@@ -14,6 +14,8 @@ namespace DungeonAndRoom
         [SerializeField] private Transform _defaultSpawnPoint;
         [SerializeField] private Transform _roomPrefabPosition;
         [SerializeField] private Door _upDoor, _downDoor, _leftDoor, _rightDoor;
+        [Header("Prefabs")] 
+        [SerializeField] private PickableItem _pickableItem;
         
         public Room CurrentRoom { get; private set; }
         public Transform DefaultSpawnPoint => _defaultSpawnPoint;
@@ -80,7 +82,13 @@ namespace DungeonAndRoom
             if (CurrentRoom.HasRightRoom) _rightDoor.Open(CurrentRoom.RightRoom);
         }
         
-        #if UNITY_EDITOR
+        public void SpawnPickableItem(Vector3 transformPosition, ItemType type, int amount)
+        {
+            transformPosition.y = 0.5f;
+            Instantiate(_pickableItem, transformPosition, Quaternion.identity).Set(type, amount);
+        }
+        
+#if UNITY_EDITOR
 
         private void Update()
         {

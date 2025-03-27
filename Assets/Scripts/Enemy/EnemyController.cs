@@ -2,6 +2,8 @@
 using Character;
 using Data;
 using DG.Tweening;
+using Game;
+using Gameplay;
 using MBLib.GameEventManager;
 using Projectiles;
 using UnityEngine;
@@ -86,10 +88,15 @@ namespace Enemy
                 _deathParticle.transform.parent = null;
             }
             
+            //drop
+            if (_data.Drop.GetDrop(out ItemType type, out int amount))
+            {
+                GameManager.Instance.RoomController.SpawnPickableItem(transform.position, type, amount);
+            }
+            
+            //destroy
             GameEventsManager.KillEvent(_behaviorGuid);
-            
             OnDie?.Invoke(this);
-            
             Destroy(gameObject);
         }
 

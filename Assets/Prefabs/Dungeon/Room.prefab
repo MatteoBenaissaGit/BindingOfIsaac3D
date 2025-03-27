@@ -405,6 +405,7 @@ MonoBehaviour:
   _downDoor: {fileID: 2660444307441572276}
   _leftDoor: {fileID: 1788417819836784258}
   _rightDoor: {fileID: 7860168063596450076}
+  _pickableItem: {fileID: 7768200615775757872, guid: 8377d726edb95c7409f5270a9ac9a7ad, type: 3}
 --- !u!1 &2982346730028230159
 GameObject:
   m_ObjectHideFlags: 0

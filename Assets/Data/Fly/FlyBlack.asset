@@ -15,3 +15,11 @@ MonoBehaviour:
   <Life>k__BackingField: 2
   <DamagePlayerOnContact>k__BackingField: 1
   <ContactDamage>k__BackingField: 1
+  <Drop>k__BackingField:
+    DropRate: 0.1
+    HealthDropChance: 0.16108969
+    BombDropChance: 0.16108969
+    MoneyDropChance: 0.6778206
+    HealthDropAmount: 1
+    BombDropAmount: 1
+    MoneyDropAmount: 5

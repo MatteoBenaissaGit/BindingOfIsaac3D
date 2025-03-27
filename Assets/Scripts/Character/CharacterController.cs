@@ -52,9 +52,7 @@ namespace Character
         {
             if (GameplayData.Life <= 0) return;
             
-            GameplayData.Life -= (int)damage;
-            
-            GameManager.Instance.UI.Life.UpdateLife(GameplayData.Life);
+            AddLife(-(int)damage);
 
             foreach (Material material in SkinnedMesh.materials)
             {
@@ -71,6 +69,43 @@ namespace Character
             }
         }
 
+        public void AddLife(int value)
+        {
+            GameplayData.Life += value;
+            if (GameplayData.Life > GameplayData.MaxLife)
+            {
+                GameplayData.Life = GameplayData.MaxLife;
+            }
+            else if (GameplayData.Life < 0)
+            {
+                GameplayData.Life = 0;
+            }
+            
+            GameManager.Instance.UI.Life.UpdateLife(GameplayData.Life);
+        }
+
+        public void AddBomb(int value)
+        {
+            GameplayData.Bomb += value;
+            if (GameplayData.Bomb < 0)
+            {
+                GameplayData.Bomb = 0;
+            }
+            
+            GameManager.Instance.UI.Stats.Set(UIStats.StatType.Bomb, GameplayData.Bomb);
+        }
+
+        public void AddMoney(int value)
+        {
+            GameplayData.Money += value;
+            if (GameplayData.Money < 0)
+            {
+                GameplayData.Money = 0;
+            }
+            
+            GameManager.Instance.UI.Stats.Set(UIStats.StatType.Money, GameplayData.Money);
+        }
+        
         private void Die()
         {
             foreach (Material material in SkinnedMesh.materials)
